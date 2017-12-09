@@ -62,7 +62,239 @@
 </head>
 
 <body>
+    <script>
+    function myFunc4(){
+        return 0;
+    }
+    function myFunc1(){
+        return 0;
+    }
+    function myFunc2(){
+        return 0;
+    }
+    function myFunc3(){
+        return 0;
+    }
+    function myFunc5(){
+        return 0;
+    }
+    function myFunc6(){
+        return 0;
+    }
+    function myFunc7(){
+        return 0;
+    }
+    function myFunc8(){
+        return 0;
+    }
+    function myFunc10(){
+        return 0;
+    }
+    function myFunc9(){
+        return 0;
+    }
 
+
+    function delFunc1(){
+        return 0;
+    }
+    function delFunc2(){
+        return 0;
+    }
+    function delFunc3(){
+        return 0;
+    }
+    function delFunc4(){
+        return 0;
+    }
+    function delFunc5(){
+        return 0;
+    }
+    function delFunc6(){
+        return 0;
+    }
+    function delFunc7(){
+        return 0;
+    }
+    function delFunc8(){
+        return 0;
+    }
+    function delFunc9(){
+        return 0;
+    }
+    function delFunc10(){
+        return 0;
+    }
+    </script>
+
+    {%for i in all_add%}
+    <script>
+    function myFunc{{forloop.counter}}(){
+       return $("#add-{{forloop.counter}}").val();
+    }
+    </script>
+    {%endfor%}
+
+    {%for i in all_del%}
+    <script>
+    function delFunc{{forloop.counter}}(){
+       return $("#del-{{forloop.counter}}").val();
+    }
+    </script>
+    {%endfor%}
+    
+
+    <script>
+    $(document).ready(function(){
+    
+    var allowance = $("#allowance").val()
+    var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()        
+    var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+    $("#output").val(+add - -sub);
+
+    $("#allowance").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+
+    $("#add-1").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-2").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-3").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-4").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-5").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-6").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-7").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-8").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#add-9").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#add-10").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-1").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-2").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-3").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-4").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-5").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-6").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-7").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-8").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-9").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-10").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    });
+
+    </script>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -177,70 +409,64 @@
                 <button id = "rembtn"> Remove </button>
                 -->
                 <br>
-    
+            <form method="post">
+                {%csrf_token%}
             <label>ADD A NEW ITEM:</label>
             <div class="form-group form-inline">
-                <select class = "salary-options" style = "padding: 5px 25px;">
+                <select class = "salary-options" name = "type" style = "padding: 5px 25px;">
                     <option> Additional </option>
                     <option> Deduction  </option>
                 </select>
                 
                 <input type="text" name="sal_option" placeholder="Enter name of salary option..." class="form-control" required="required">
                 <input type="text" name="value" placeholder="Enter amount..." class="form-control" required="required">
-                <input type="submit" value="Add" class="btn btn-primary">
+                <input type="submit" value="Add" name="add" class="btn btn-primary">
             </div>
-        
+            </form>
+
             </div>
-        
+        <form method="POST">
+            {%csrf_token%}
             <div class="salaries-table">
                 <table class="table table-bordered">
                     <tr>
                         <th class="info"><strong>Salary:</strong> </th>
-                        <td>Allowance: <input type = "number" name = "allowance_amount" value = "0" /> </td>
-                        <td> <input type = "checkbox"></td>
+                        <td>Allowance: <input type = "number" name = "allowance_amount" id="allowance" value = "0" /> </td>
+                        <td></td>
                     </tr>
                     
                     
                     <tr>
-                        <th class="success" rowspan="2">Additional: </th>
-                        <td><em>Key-holder</em> Pay: <input type = "number" name = "keypay_amount" value = "0"/></td>
-                        <td> <input type = "checkbox"></td>
+                        <th class="success" rowspan="{{length}}">Additional: </th>
                     </tr>
+
+                    {% for i in all_add %}
                     <tr>
-                        <td><em>No-late</em> Pay: <input type = "number" name = "nolate_amount" value = "0" /></td>
-                        <td> <input type = "checkbox"></td>
+                        <td>{{i.name}}:<input type = "number" id = "add-{{forloop.counter}}" step=".01" value = "{{i.value}}"/></td>
+                        <td> <input type="submit" value="Remove" name="remove" class="btn btn-primary"></td>
                     </tr>
+                    {%endfor%}
+                    
+                    
                     <tr>
-                        <th class="danger" rowspan="5">Deductions: </th>
-                        <td>Absences:<input type = "number" name = "absence_amount" value = "0" /></td>
-                        <td> <input type = "checkbox"></td>
+                        <th class="danger" rowspan="{{length2}}">Deductions: </th>
                     </tr>
+                    {% for d in all_del %}
                     <tr>
-                        <td>Undertime: <input type = "number" name = "undertime_amount" value = "0" /></td>
-                        <td> <input type = "checkbox"></td>
+                        <td>{{d.name}}:<input type = "number"  step="0.01" id = "del-{{forloop.counter}}" value = "{{d.value}}" /></td>
+                        <td> <input type="submit" value="Remove" name="remove" class="btn btn-primary"></td>
                     </tr>
-                    <tr>
-                        <td>SSS Deduction: <input type = "number" name = "SSS_amount" value = "100" /></td>
-                        <td> <input type = "checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>PhilHealth Deduction: <input type = "number" name = "PH_amount" value = "100" /></td>
-                        <td> <input type = "checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>Pag-Ibig Deduction: <input type = "number" name = "PI_amount" value = "100" /></td>
-                        <td> <input type = "checkbox"></td>
-                    </tr>
+                    {%endfor%}
 
                     <tr>
                         <td class = "warning"> </td>
-                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input type = "number" value = "4050" /></th>
+                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input type = "number" name="total" id = "output" value = "" disabled /></th>
                     </tr>
                 </table>
+                <input type="submit" value="Submit" name="submit" class="btn btn-primary">
             </div>
-
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+            
+            </form>
         </div>
     </div>
 </body>

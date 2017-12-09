@@ -8,7 +8,12 @@
         width: 200px;
         height: 32px; 
     }
-    
+    #month {
+ /* Float both forms to the left */
+ float: left; 
+ /* borders added for visibility. Just remove them */
+
+}
     #sortlist {
         width: 125px;
         padding-left: 7px;
@@ -176,17 +181,27 @@
 				
 		<div style="position:absolute; left:270px; top:60px;">
             
-            <form class="tools form-inline" method="GET" action="{% url 'inventory' %}">
-                <Label>MONTH & YEAR :</Label><input type="month" >
-
-                <input type="submit" class="btn btn-primary" value="SEARCH">
+            <form class="tools form-inline" id="month" method="GET">
+                <Label>MONTH & YEAR :</Label><input type="month">
             </form>
+
+            <form method="POST">
+                {%csrf_token%}
+                <Label>TUITION:</Label>
+                <select class="dropbox" id="tuitionlist" name="level">
+                    <option>Grade 6 and below</option>
+                    <option>Grade 7 and above</option>
+                </select>
+                <input type="number" min='0' step='0.01' name ="pay" placeholder="Enter tuition">
+                <input type="submit" value="Update" name="update">
+            </form>
+
 
 			<label style="padding-top:10px">SEARCH & SORT: </label>
             <form class="tools form-inline" method="GET" action="">
                 <input type="search" name="q" placeholder="Search Student" class="item_search form-control form-inline">
                 <input type="submit" class="btn btn-primary" id="search" value="Search">
-                <select class="dropbox" id="sortlist">
+                <select class="dropbox" id="sortlist" name="list">
                     <option>Fully Paid</option>
                     <option>Partially Paid</option>
                     <option>Not Yet Paid</option>
@@ -197,7 +212,7 @@
             <div class="row">
                 </br>
             </div>
-            <form action="{% url 'expensesUpdate' %}" method="POST">
+
             {% csrf_token %}
             <div class="table-responsive">
     			<table class="table table-boarded">
@@ -212,33 +227,38 @@
                         </tr>         
                     </thead>
     			  <tbody id="expenses_table">
-                   {% for expense in expenses %}
-                        <tr data-item="{{expense}}">
-                            <td>{{ expense }}</td>
-                            <td>{{expense.cost}}</td>
-                            <td>{{ expense.added }}</td>
-                            <td></td>
-                            <td></td>
+                   {% for student in all_students %}
+                        <tr data-item="{{student}}">
+                            <td>{{ student.name}}</td>
+                            <td>{{tuition.OR_number}}</td>
+                            <td>{{tuition.date}}</td>
+                            <td>{{tuition.payment|floatformat:2}}</td>
+                            <td>Paid, partial, not paid</td>
                             <td class="rem_chck"><input type="submit" value="REMOVE" class="btn btn-danger" name="remove" id="remove"></td>
+                        
                         </tr>
                     {% endfor %}
                   </tbody>
     			</table>
-			</div>
-            <form action="{% url 'exspensesAdd' %}" method="POST">
+            </div>
+            
+
+            <form method="POST" id="addPay">
                 {% csrf_token %}
                 <br>
                 <label> Add a OR entry </label>
                 <div class="form-group form-inline">
-                    <form class="form-control" action="/action_page.php">
-                      <select class="dropbox" id="namelist">
-                        <option></option>
+                    
+                      <select class="dropbox" id="namelist" name="studList" form="addPay">
+                          {%for student in all_students%}
+                        <option>{{student}}</option>
+                        {%endfor%}
                       </select>
-                    </form>
-                    <input type="text" class="form-control" name="" placeholder="Enter OR number">
+
+                    <input type="text" class="form-control" name="or-number" placeholder="Enter OR number">
                     <input type="date" id="date" name="date" class="form-control">
-                    <input type="text" class="form-control" name="cost" placeholder="Enter payment">
-                    <input type="submit" value="Add" class="btn btn-primary">
+                    <input type="number" class="form-control" name="payment" placeholder="Enter payment">
+                    <input type="submit"  name= "add" value="Add" class="btn btn-primary">
                 </div>
                 <div class="form-group">
                     {% if error %}
@@ -246,7 +266,7 @@
                     {% endif %}
                 </div>
             </form>
-            </form>
+            
             
         </div>
     </div>

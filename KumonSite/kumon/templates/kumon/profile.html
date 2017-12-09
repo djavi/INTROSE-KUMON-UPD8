@@ -29,7 +29,8 @@
         <!-- Custom Fonts -->
         <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
         
-
+        <script src="{% static 'kumon/jquery.min.js' %}"></script>
+        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
@@ -82,7 +83,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -143,7 +144,7 @@
          <div id="page-wrapper">
              <div class="row">
                 <div class="col-lg-1.2" style="margin: 2%">
-             <img src={{ teacher.t_picture.url }} class="img-thumbnail" style="width: 200px; height: 200px; overflow: hidden">
+             <img src={{ teacher.t_picture.url }} class="img-thumbnail">
                  </div>
              </div>
              <!--

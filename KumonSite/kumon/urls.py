@@ -18,12 +18,15 @@ urlpatterns = [
     url(r'^expenses/$', views.expensesPage, name='expenses'),
     url(r'^expenses/(?P<date>\d{4}-\d{2}-\d{2})/$', views.expensesPage, name='expensesUp'),
     url(r'^inventory/$', views.inventoryPage, name='inventory'),
-    url(r'^salaries_format/$', views.salaryFormatPage, name='salary_format'), 
-    url(r'^teacher_salary/$', views.teacherSalaryPage, name='teacher_salary'),
+    url(r'^salaries_format/$', views.salaryFormatPage, name='salary_format'),
+    url(r'^salaries_format/update/$', views.salaryFormatUpdate, name='salaryUpdate'),  
+    url(r'^teacher_salary/([0-9]+)/$', views.teacherSalaryPage, name='teacher_salary'),
     url(r'^addteacher/$', views.addTeacher, name='add-teacher'),
     url(r'^inventory/update/$', views.inventoryUpdate, name='inventoryUpdate'),    
     url(r'^inventory/add/$', views.inventoryAdd, name='inventoryAdd'), 
     url(r'^expenses/update/$', views.expensesUpdate, name='expensesUpdate'),
+    url(r'^expenses/update/(?P<date>\d{4}-\d{2}-\d{2})/$', views.expensesUpdate, name='exp'),
     url(r'^expenses/add/$', views.exspensesAdd, name='exspensesAdd'),
+    url(r'^expenses/add/(?P<date>\d{4}-\d{2}-\d{2})/$', views.exspensesAdd, name='exsp'),
 
 ]
