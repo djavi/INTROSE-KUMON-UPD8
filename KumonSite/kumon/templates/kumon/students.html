@@ -42,6 +42,8 @@
 
 </style>
 
+<script src="{% static 'kumon/jquery.min.js' %}"></script>
+<script src="{% static 'kumon/bootstrap.min.js' %}"></script>
 
 <head>
 
@@ -61,8 +63,7 @@
         
             <!-- Custom Fonts -->
             <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
-            <script src="{% static 'kumon/jquery.min.js' %}"></script>
-            <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+
 </head>
 
 <body>
@@ -116,7 +117,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -174,27 +175,53 @@
             <!-- /.navbar-static-side -->
         </nav>
     <div id="page-wrapper" style="padding-top: 30px; padding-left: 30px;">
-        <label>SEARCH: </label>
-        <input type="search" placeholder="Search student name" class="item_search">
-        <button id = "okbtn"> OK </button>
-        <Label style="padding-left: 30px;">Sort by:</Label>
-        <select>
-            <option>Last Name</option>
-            <option>Nickname</option>
-            <option>Birthdate</option>
-            <option>Age</option>
-            <option>Status</option>
-            <option>School</option>
-            <option>School Level</option>
-            <option>Kumon Level</option>
-            <option>ASHR</option>
-            <option>Years Stayed</option>
-        </select>
-        <button id = "abtn"><a href="/kumon/addstudent">Add</a></button>
-
+		
     <div class = "student-table">
+		<table class = "table table-bordered">
+			<tr>
+		<td>
+		<Label style="padding-left: 0px;" name='sort_lbl' id='sort_lbl'>SEARCH:</Label>
+		<!--<form method = 'POST'> {% csrf_token %}
+        <input type="search" name="search" id="search" placeholder="Search student name" class="item_search">
+        <button id = "okbtn"> OK </button> -->
+		<form class="tools form-inline" method="GET" action="">
+        <input type="search" name="q" placeholder="Search Student" class="item_search form-control form-inline">
+        <input type="submit" class="btn btn-primary" id="search" value="Search">
+
+		</form>
+		</td>
+		
+		
+		
+		<td>
+        <Label style="padding-left: 0px;" name='sort_lbl' id='sort_lbl'>SORT BY:</Label>
+		<form method = 'POST'> {% csrf_token %}
+        <select onchange="this.form.submit()" name = "sortlist" id = "sortlist">
+            <option>Choose</option>
+			<option value = 'lastname'>Last Name</option>
+            <option value = 'nickname'>Nickname</option>
+            <option value = 'birthdate' >Birthdate</option>
+            <option value = 'age' >Age</option>
+            <option value = 'status' >Status</option <!-- active/nonactive(3months absent)/completed -->
+            <option value = 'school'>School</option>
+            <option value = 'school_level'> School Level</option>
+            <option value = 'kumon_levelM'>Kumon Level - Math</option>
+            <option value = 'ashrM'>ASHR - Math</option>
+			<option value = 'kumon_levelM'>Kumon Level - Reading</option>
+            <option value = 'ashrR'>ASHR - Reading</option>
+           <!-- <option value = 'ys'>Years Stayed</option> -->
+        </select>
+		</form>
+			</td>
+			<td>
+			<Label style="padding-left: 0;" name='sort_lbl' id='sort_lbl'>ADD STUDENT:</Label>
+			<br>
+			<button id = "abtn"><a href="/kumon/addstudent">Add</a></button></td>
+			</tr>
+		</table>
         <table class = "table table-bordered">
             <tbody>
+		
             <tr>
                 <th id = "t1">Full Name (Last, First, Middle)</th>
                 <th id = "t2">Nickname</th>
