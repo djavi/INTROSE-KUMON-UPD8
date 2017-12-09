@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+            <script src="{% static 'kumon/jquery.min.js' %}"></script>
+            <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+    </head>
+    <body>
+        <!-- kau na magayus ne2 -->
+        <div>
+            <form method='POST' class="post-form" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {% for field in form %}
+            <label>{{field.label_tag}}</label>
+            {{field}}<br>
+            {% endfor %}
+                <br>
+            <button type='submit'>Save and another</button>
+            <button type='button'><a href="/kumon/teachers">Go Back</a></button>
+            </form>
+        </div>
+    </body>
+</html>

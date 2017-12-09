@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+    </head>
+    <body>
+        <!-- kau na magayus ne2 -->
+        <div>
+            <form method='POST' class="post-form" enctype='multipart/form-data'>
+            {% csrf_token %}
+            {% for field in form %}
+            <label>{{field.label_tag}}</label>
+            {{field}}<br>
+            {% endfor %}
+                <br>
+            <button type='submit'>Save</button>
+            <button type='submit'><a href="/kumon/inventory">Go back</a></button>
+            </form>
+        </div>
+    </body>
+</html>

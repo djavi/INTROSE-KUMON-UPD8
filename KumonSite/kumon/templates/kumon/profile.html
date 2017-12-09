@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<style>
+    .table-responsive{
+        width: 100%;
+        border: 5px solid #dddd;
+    }
+    </style>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>kumon</title>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="src/index.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'kumon/bootstrap.min.css' %}">
+    
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'kumon/kumon.css' %}">
+    
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
+        
+        <script src="{% static 'kumon/jquery.min.js' %}"></script>
+        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/kumon/home"><font color="white">KUMON Poblacion (Guagua) Center</font></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw" style="color:#16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw" style="color: #16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/kumon/home"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/kumon/students"><i class="fa fa-server fa-fw" ></i> Students</a>
+                        </li>
+                        <li style = "background-color:lightgray;">
+                            <a href="/kumon/teachers"><i class="fa fa-group fa-fw"></i> Teachers</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                        </li>
+                         <li>
+                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+         <div id="page-wrapper">
+             <div class="row">
+                <div class="col-lg-1.2" style="margin: 2%">
+             <img src={{ teacher.t_picture.url }} class="img-thumbnail">
+                 </div>
+             </div>
+             <!--
+             <div class="row">
+                <div class="col-lg-6" style="margin: 4%">
+                  <dl class="dl-horizontal">
+                <dt style="font-size: medium">Name :</dt>
+                <dd style="font-size: medium">Testing McTesterFace</dd>
+                <dt style="font-size: medium">Gender :</dt>
+                <dd style="font-size: medium"> M </dd>
+                 <dt style="font-size: medium">Age :</dt>
+                <dd style="font-size: medium">18</dd>
+                 <dt style="font-size: medium">Birthday :</dt>
+                <dd style="font-size: medium">12/01/1998</dd>
+                 <dt style="font-size: medium">Gender :</dt>
+                <dd style="font-size: medium">...</dd>
+                <dt style="font-size: medium">Address :</dt>
+                <dd style="font-size: medium">Somewhere St., Along the Road City</dd>
+                <dt style="font-size: medium">Phone number :</dt>
+                <dd style="font-size: medium"></dd>
+                <dt style="font-size: medium">Email Address :</dt>
+                <dd style="font-size: medium">...</dd>
+                <dt style="font-size: medium">Handled Subject :</dt>
+                <dd style="font-size: medium">...</dd>
+                <dt style="font-size: medium">Schedule :</dt>
+                <dd style="font-size: medium">
+            </dd>
+            </dl>
+        </div>
+    </div>
+             -->
+             <div class="table-responsive">
+                    <table class="table table-bordered">
+                       <tbody>
+               <tr>
+                   <td><strong>Name:</strong></td>
+                   <td>{{teacher.name}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Gender</strong></td>
+                   <td >{{teacher.gender}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Age:</strong></td>
+                   <td> {{teacher.age}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Birthdate</strong></td>
+                   <td>{{teacher.birthdate}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Home Address</strong> </td>
+                   <td>{{teacher.address}} </td>
+               </tr>
+               <tr>
+                   <td><strong>Contact Number:</strong></td>
+                   <td>{{teacher.phone_num}}</td>
+               </tr>
+               <tr>
+                   <td><strong>E-mail Address:</strong></td>
+                   <td>{{teacher.email}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Handled Subject:</strong></td>
+                   <td>{{teacher.subject}}</td>
+               </tr>
+               <tr>
+                   <td><strong>Schedule:</strong></td>
+                   <td>   <table class="table table-bordered" style="text-align: center">
+     <thead>
+       <tr>
+         <th style="text-align: center">Time </th>
+         <th style="text-align: center">Monday</th>
+         <th style="text-align: center">Tuesday</th>
+         <th style="text-align: center">Wednesday</th>
+         <th style="text-align: center">Thursday</th>
+         <th style="text-align: center">Friday</th>
+         <th style="text-align: center">Saturday</th>
+         <th style="text-align: center">Sunday</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr >
+         <th scope="column" rowspan="3" style="text-align: center">4:00pm-5:00pm</th>
+         <td>student name</td>
+         <th rowspan="3" style="text-align:center">no shift</th>
+         <th rowspan="6" style="text-align:center">Day off</th>
+         <td>student name</td>
+         <td>student name</td>
+         <td>student name </td>
+         <th rowspan="6" style="text-align:center">Day off</th>
+       </tr>
+       <tr>
+         <td >student name</td>
+         <td>student name </td>
+         <td>student name</td>
+         <td>student name</td>
+       </tr>
+        <tr>
+         <td >student name</td>
+         <td>student name </td>
+         <td>student name</td>
+         <td>student name</td>
+       </tr>
+        <tr>
+         <th scope="column" rowspan="3" style="text-align: center">5:00pm-6:00pm</th>
+        <th rowspan="3" style="text-align:center">no shift</th>
+         <td>student name</td>
+         <td>student name</td>
+      <th rowspan="3" style="text-align:center">no shift</th>
+         <td>student name</td>  
+       </tr>
+       <tr>
+         <td>student name</td>
+         <td>student name</td>
+         <td>student name</td>
+       </tr>
+        <tr>
+         <td>student name</td>
+         <td>student name </td>
+         <td>student name</td>
+       </tr>
+       
+     </tbody>
+   </table> </td>
+               </tr>
+           </tbody>
+       </table>
+   </div>
+                
+   </div>
+   </body>
+</html>

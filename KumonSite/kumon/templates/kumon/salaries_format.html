@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<style>
+
+    .box-1{
+        position: absolute;
+        left: 270px;
+        top:60px;
+        
+    }
+    
+    #addbtn, #rembtn{
+        background-color:#008CBA;
+        border: none;
+        color: white;
+        padding: 5px 25px;
+        transition-duration: 0.2s;
+       
+    }
+    #addbtn:hover, #rembtn:hover{
+        background-color:white;
+        color:black;
+        border:2px solid #008CBA;
+    }
+   
+    .salaries-table{
+        position: absolute;
+        left: 270px;
+        top:155px;
+    }
+    .salaries-table td{
+        text-align:right;
+    }
+    .salaries-table th{
+    }
+    input{
+        text-align: right;
+    }
+</style>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>kumon</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{% static 'kumon/bootstrap.min.css' %}">
+    
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'kumon/kumon.css' %}">
+    
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
+        <script src="{% static 'kumon/jquery.min.js' %}"></script>
+        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/kumon/home"><font color="white">KUMON Poblacion (Guagua) Center</font></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw" style="color:#16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw" style="color: #16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/kumon/home"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/kumon/students"><i class="fa fa-server fa-fw" ></i> Students</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/teachers"><i class="fa fa-group fa-fw"></i> Teachers</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                        </li>
+                        <li style = "background-color:lightgray;">
+                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div class = "container-1"> 
+            <div class = "box-1"> 
+                <!--
+                <button id = "addbtn"> Add </button>
+                <button id = "rembtn"> Remove </button>
+                -->
+                <br>
+    
+            <label>ADD A NEW ITEM:</label>
+            <div class="form-group form-inline">
+                <select class = "salary-options" style = "padding: 5px 25px;">
+                    <option> Additional </option>
+                    <option> Deduction  </option>
+                </select>
+                
+                <input type="text" name="sal_option" placeholder="Enter name of salary option..." class="form-control" required="required">
+                <input type="text" name="value" placeholder="Enter amount..." class="form-control" required="required">
+                <input type="submit" value="Add" class="btn btn-primary">
+            </div>
+        
+            </div>
+        
+            <div class="salaries-table">
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="info"><strong>Salary:</strong> </th>
+                        <td>Allowance: <input type = "number" name = "allowance_amount" value = "0" /> </td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <th class="success" rowspan="2">Additional: </th>
+                        <td><em>Key-holder</em> Pay: <input type = "number" name = "keypay_amount" value = "0"/></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td><em>No-late</em> Pay: <input type = "number" name = "nolate_amount" value = "0" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <th class="danger" rowspan="5">Deductions: </th>
+                        <td>Absences:<input type = "number" name = "absence_amount" value = "0" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Undertime: <input type = "number" name = "undertime_amount" value = "0" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>SSS Deduction: <input type = "number" name = "SSS_amount" value = "100" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>PhilHealth Deduction: <input type = "number" name = "PH_amount" value = "100" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+                    <tr>
+                        <td>Pag-Ibig Deduction: <input type = "number" name = "PI_amount" value = "100" /></td>
+                        <td> <input type = "checkbox"></td>
+                    </tr>
+
+                    <tr>
+                        <td class = "warning"> </td>
+                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input type = "number" value = "4050" /></th>
+                    </tr>
+                </table>
+            </div>
+
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        </div>
+    </div>
+</body>
+</html>
