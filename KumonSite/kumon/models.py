@@ -21,7 +21,10 @@ class User(models.Model):
 class Teacher(models.Model):
     gender_choices = (('Male', 'Male'), ('Female', 'Female'))
     
-    name = models.CharField(max_length=50)
+    #name = models.CharField(max_length=50)
+    lastname = models.CharField(max_length=50)
+	firstname = models.CharField(max_length=50)
+	middlename = models.CharField(max_length=50)
     birthdate = models.DateField(auto_now=False)
     age = models.IntegerField()
     gender = models.CharField(
@@ -40,11 +43,13 @@ class Teacher(models.Model):
     def __str__(self):
         return self.name
 
-
 class Student(models.Model):
     gender_choices = (('Male', 'Male'), ('Female', 'Female'))
     #Basic Details
-    name = models.CharField(max_length=59)
+    #name = models.CharField(max_length=59)
+    lastname = models.CharField(max_length=50)
+	firstname = models.CharField(max_length=50)
+	middlename = models.CharField(max_length=50)
     nickname = models.CharField(max_length=25)
     birthdate = models.DateField(auto_now=False)
     age = models.IntegerField()
@@ -115,7 +120,7 @@ class Student(models.Model):
     date_enrolled = models.DateField(auto_now=False)
     kumon_levelM = models.CharField(
         max_length=50, choices=kumon_levelM_choices, default='9A')
-    kumon_levelR = models.CharField(max_length=50)
+    kumon_levelR = models.CharField(max_length=50, , choices=kumon_levelM_choices, default='9A')
 
     rank_choices = (('Bronze', 'Bronze'), ('Silver', 'Silver'),
                     ('Gold', 'Gold'), ('None', 'None'))
