@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<style>
+
+    .box-1{
+        position: absolute;
+        left: 270px;
+        top:60px;
+        
+    }
+    
+    #addbtn, #rembtn{
+        background-color:#008CBA;
+        border: none;
+        color: white;
+        padding: 5px 25px;
+        transition-duration: 0.2s;
+       
+    }
+    #addbtn:hover, #rembtn:hover{
+        background-color:white;
+        color:black;
+        border:2px solid #008CBA;
+    }
+   
+    .salaries-table{
+        position: absolute;
+        left: 270px;
+        top:155px;
+    }
+    .salaries-table td{
+        text-align:right;
+    }
+    .salaries-table th{
+    }
+    input{
+        text-align: right;
+    }
+</style>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>kumon</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{% static 'kumon/bootstrap.min.css' %}">
+    
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'kumon/kumon.css' %}">
+    
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
+        <script src="{% static 'kumon/jquery.min.js' %}"></script>
+        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+
+</head>
+
+<body>
+    <script>
+    function myFunc4(){
+        return 0;
+    }
+    function myFunc1(){
+        return 0;
+    }
+    function myFunc2(){
+        return 0;
+    }
+    function myFunc3(){
+        return 0;
+    }
+    function myFunc5(){
+        return 0;
+    }
+    function myFunc6(){
+        return 0;
+    }
+    function myFunc7(){
+        return 0;
+    }
+    function myFunc8(){
+        return 0;
+    }
+    function myFunc10(){
+        return 0;
+    }
+    function myFunc9(){
+        return 0;
+    }
+
+
+    function delFunc1(){
+        return 0;
+    }
+    function delFunc2(){
+        return 0;
+    }
+    function delFunc3(){
+        return 0;
+    }
+    function delFunc4(){
+        return 0;
+    }
+    function delFunc5(){
+        return 0;
+    }
+    function delFunc6(){
+        return 0;
+    }
+    function delFunc7(){
+        return 0;
+    }
+    function delFunc8(){
+        return 0;
+    }
+    function delFunc9(){
+        return 0;
+    }
+    function delFunc10(){
+        return 0;
+    }
+    </script>
+
+    {%for i in all_add%}
+    <script>
+    function myFunc{{forloop.counter}}(){
+       return $("#add-{{forloop.counter}}").val();
+    }
+    </script>
+    {%endfor%}
+
+    {%for i in all_del%}
+    <script>
+    function delFunc{{forloop.counter}}(){
+       return $("#del-{{forloop.counter}}").val();
+    }
+    </script>
+    {%endfor%}
+    
+
+    <script>
+    $(document).ready(function(){
+    
+    var allowance = $("#allowance").val()
+    var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()        
+    var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+    $("#output").val(+add - -sub);
+
+    $("#allowance").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+
+    $("#add-1").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-2").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-3").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-4").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-5").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-6").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-7").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#add-8").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#add-9").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#add-10").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-1").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-2").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-3").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    $("#del-4").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-5").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-6").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-7").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-8").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-9").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+    $("#del-10").keyup(function(){
+        var allowance = $("#allowance").val()
+        var add = +allowance + +myFunc1() + +myFunc2() + +myFunc3() + +myFunc4() + +myFunc5() + +myFunc6() + +myFunc7() + +myFunc8() + +myFunc9() + +myFunc10()
+        var sub = -delFunc1() - -delFunc2() - -delFunc3() - -delFunc4() - -delFunc5() - -delFunc6() - -delFunc7() - -delFunc8() - -delFunc9() - -delFunc10() 
+        $("#output").val(+add - -sub);
+    });
+
+    });
+    function setTwoNumberDecimal(event) {
+    this.value = parseFloat(this.value).toFixed(2);
+}
+
+function validateFloatKeyPress(el, evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    var number = el.value.split('.');
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+
+    if(number.length>1 && charCode == 46){
+         return false;
+    }
+
+    var caratPos = getSelectionStart(el);
+    var dotPos = el.value.indexOf(".");
+    if( caratPos > dotPos && dotPos>-1 && (number[1].length > 1)){
+        return false;
+    }
+    return true;
+}
+
+function getSelectionStart(o) {
+    if (o.createTextRange) {
+        var r = document.selection.createRange().duplicate()
+        r.moveEnd('character', o.value.length)
+        if (r.text == '') return o.value.length
+        return o.value.lastIndexOf(r.text)
+    } else return o.selectionStart
+}
+    </script>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/kumon/home"><font color="white">KUMON Poblacion (Guagua) Center</font></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw" style="color:#16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw" style="color: #16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/kumon/home"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/kumon/students"><i class="fa fa-server fa-fw" ></i> Students</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/teachers"><i class="fa fa-group fa-fw"></i> Teachers</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                        </li>
+                        <li style = "background-color:lightgray;">
+                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div class = "container-1"> 
+            <div class = "box-1"> 
+                <!--
+                <button id = "addbtn"> Add </button>
+                <button id = "rembtn"> Remove </button>
+                -->
+                <br>
+            <form method="post">
+                {%csrf_token%}
+            <label>ADD A NEW ITEM:</label>
+            <div class="form-group form-inline">
+                <select class = "salary-options" name = "type" style = "padding: 5px 25px;">
+                    <option> Additional </option>
+                    <option> Deduction  </option>
+                </select>
+                
+                <input type="text" name="sal_option" placeholder="Enter name of salary option..." class="form-control" required="required">
+                <input type="text" name="value" placeholder="Enter amount..." class="form-control" required="required">
+                <input type="submit" value="Add" name="add" class="btn btn-primary">
+            </div>
+            </form>
+
+            </div>
+        <form method="POST" action="{%url 'salary_format' %}">
+            {%csrf_token%}
+            <div class="salaries-table">
+                <table class="table table-bordered">
+                    <tr>
+                        <th class="info"><strong>Salary:</strong> </th>
+                        <td>Allowance: <input onkeypress="return validateFloatKeyPress(this,event);" type = "number" name = "allowance_amount" id="allowance" step ="0.01"value = "{{user.amount}}" /> </td>
+                        <td></td>
+                    </tr>
+                    
+                    {%if all_add%}
+                    <tr>
+                        <th class="success" rowspan="{{length}}">Additional: </th>
+                    </tr>
+
+                    {% for i in all_add %}
+                    <tr>
+                        <td>{{i.name}}:<input type = "number" name = "add-{{i.id}}"id = "add-{{forloop.counter}}" step=".01" value = "{{i.value}}"/></td>
+                        <td class="chck"><input type="checkbox" name="item_check_add-{{i.id}}"></td>
+                    </tr>
+                    {%endfor%}
+                    {%endif%}
+                    
+                    {%if all_del%}
+                    <tr>
+                        <th class="danger" rowspan="{{length2}}">Deductions: </th>
+                    </tr>
+                    
+                    {% for d in all_del %}
+                    <tr>
+                        <td>{{d.name}}:<input type = "number"  step="0.01"  name = "del-{{d.id}}"id = "del-{{forloop.counter}}" value = "{{d.value}}" /></td>
+                        <td class="chck"><input type="checkbox" name="item_check_del-{{d.id}}"></td>
+                    </tr>
+                    {%endfor%}
+                    {%endif%}
+                    
+                    <tr>
+                        <td class = "warning"> </td>
+                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input name="output" type = "number" id = "output" value = "" disabled step="0.01" /></th>
+                    </tr>
+                </table>
+                <input type="submit" value="Remove Entry" name="remove" class="btn btn-danger">
+                <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                
+            </div>
+            
+            </form>
+        </div>
+    </div>
+</body>
+</html>

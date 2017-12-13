@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<style>
+    .dropbox {
+        border-radius: 5px; 
+        border-color: lightgray;
+        width: 100px;
+        height: 32px;
+        padding-left: 10px;
+    }
+    
+    .labels {
+        position: absolute;
+        left: 290px;
+        top: 70px;
+        font-size: 16px;
+        
+    }
+    
+    .labels2 {
+        position: absolute;
+        left: 290px;
+        top: 470px;
+        font-size: 16px;
+        
+    }
+    .firstLabel {
+        margin-right: 20px;
+    }
+    .secondLabel {
+        margin-left: 270px;
+        margin-right: 20px;
+    }
+    
+    
+    .container form {
+        display: inline;
+        margin-right: 200px;
+        
+    }
+    
+    .container form div {
+        display: inline;
+    }
+    
+    #monthlist, #yearlist {
+        width: 100px;
+        padding-left: 7px;
+    }
+    
+    #yearlist {
+        width: 70px;
+        margin-right: 3px;
+    }
+</style>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>kumon</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="{% static 'kumon/bootstrap.min.css' %}">
+    
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'kumon/kumon.css' %}">
+    
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
+        
+        <script src="{% static 'kumon/jquery.min.js' %}"></script>
+        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+         <!-- Navigation -->
+         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/kumon/home"><font color="white">KUMON Poblacion (Guagua) Center</font></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw" style="color:#16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> New Task
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>See All Alerts</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw" style="color: #16242B"></i> <i class="fa fa-caret-down" style="color: #16242B"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        <li>
+                            <a href="/kumon/home"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/kumon/students"><i class="fa fa-server fa-fw" ></i> Students</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/teachers"><i class="fa fa-group fa-fw"></i> Teachers</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                        </li>
+                         <li>
+                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                        </li>
+                          <li>
+                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                        </li>
+                        <li>
+                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+            
+    <div id = "list">
+        <div class="labels">
+            <span class="firstLabel"><b>Add value for Math Graph</b></span>
+            <input type="submit" value="PRINT" class="btn btn-primary">
+            <span class="secondLabel"><b>Add value for Reading Graph</b></span>
+            <input type="submit" value="PRINT" class="btn btn-primary">
+        </div>
+		<div class="container" style="position: absolute; left: 260px; top: 108px;">
+            <form>
+                <div class="form-group form-inline">
+                    <select class="dropbox" id="levelM">
+                        <option></option>
+                        <option></option>
+                    </select>   
+                    <input type="number" class="form-control" placeholder="Enter num of worksheets">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </form>
+			<form>
+                <div class="form-group form-inline">
+                    <select class="dropbox" id="levelM">
+                        <option></option>
+                        <option></option>
+                    </select>   
+                    <input type="number" class="form-control" placeholder="Enter num of worksheets">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="container" style="position: absolute; left: 260px; top: 150px;">
+            
+            
+            
+            
+            
+            
+        </div>
+        <div class="labels2">
+            <span style="margin-right: 410px;"><b>Add Grades for Math</b></span>
+            <span><b>Add Grades for Reading</b></span>
+        </div>
+        <div class="container" style="position: absolute; left: 260px; top: 500px;">
+            <form>
+                <div class="form-group form-inline">
+                    <select class="dropbox" id="levelM" style="width:125px;">
+                        <option>Achievement</option>
+                        <option>Diagnostic</option>
+                    </select>   
+                    <input style="width:95px;" type="number" class="form-control" placeholder="Number">
+                    <input style="width:80px;" type="number" class="form-control" placeholder="Score">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </form>
+			<form>
+                <div class="form-group form-inline">
+                    <select class="dropbox" id="levelM" style="width:125px;">
+                        <option>Achievement</option>
+                        <option>Diagnostic</option>
+                    </select>   
+                    <input style="width:95px;" type="number" class="form-control" placeholder="Number">
+                    <input style="width:80px;" type="number" class="form-control" placeholder="Score">
+                    <input type="submit" value="Add" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+        <div class="container" style="position: absolute; left: 260px; top: 540px;">
+            <table class="table table-bordered" style="width: 400px; float: left; margin-right: 168px">
+                <thead>
+                    <tr class="table1">
+                        <th>TEST</th>
+                        <th>NUMBER</th>
+                        <th>SCORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table class="table table-bordered" style="width: 400px; float: left;">
+                <thead>
+                    <tr class="table1">
+                        <th>TEST</th>
+                        <th>NUMBER</th>
+                        <th>SCORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+    </div>
+    </div>
+</body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/expenses.js' %}"></script>
+</html>
