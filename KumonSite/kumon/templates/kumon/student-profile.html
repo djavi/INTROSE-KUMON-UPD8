@@ -8,6 +8,21 @@
         border: 5px solid #dddd;
     }
 </style>    
+
+<script src="jquery-3.2.1.min.js">
+
+$(document).ready(function(){
+    $('#Delete').click(function(e){
+        e.preventDefault();
+        var a = confirm('Sure?');
+        if(a){}
+        else if(!a){}
+    });
+});
+
+
+</script>
+
 <head>
 
     <meta charset="utf-8">
@@ -29,8 +44,7 @@
         <!-- Custom Fonts -->
         <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
 
-        <script src="{% static 'kumon/jquery.min.js' %}"></script>
-        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+
 </head>
 <body>
 
@@ -83,7 +97,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -142,25 +156,46 @@
         </nav>
          <div id="page-wrapper">
              <div class="row">
-                <div class="col-lg-1.2" style="margin: 2%">
-             <img src={{ student.picture.url }} class="img-thumbnail" >
-
-                 </div>
-             </div>
-             
-        
-        
-        <div class="student-table">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr>
-                        <td><strong>Name:</strong></td>
-                        <td>{{student.name}}</td>
-                    </tr>
-                    <tr>
+                <div class="col-lg-1.2">
+					<div class="row" style="margin-left: 25px; margin-top: 25px;">
+						<div style="display: inline-block;">
+							<img src={{ student.picture.url }} class="img-thumbnail" style="width: 230px; height: 230px; overflow: hidden"> 
+						</div>
+						<div class="student-table" style="width: 66%; display: inline-block; vertical-align: middle; margin-left: 50px; height: 100%">
+							<table class="table table-bordered">
+							<tbody>
+									<tr>
+									<td><strong>Last name:</strong></td>
+										<td>{{student.lastname}}</td>
+									</tr>
+									<tr>
+										<td><strong>First name:</strong></td>
+										<td>{{student.firstname}}</td>
+									</tr>
+									<tr>
+										<td><strong>Middle name:</strong></td>
+										<td>{{student.middlename}}</td>
+									</tr>
+									<tr>
+										<td><strong>Birthday:</strong></td>
+										<td>{{student.birthdate}}</td>
+									</tr>
+									<tr>
                         <td><strong>Nickname:</strong> </td>
                         <td>{{student.nickname}}</td>
                     </tr>
+							</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+            </div>
+            <br><br>
+        
+        <div class="student-table" style="width: 100%">
+            <table class="table table-bordered" style="length: 60%">
+                <tbody>
+              
                     <tr>
                         <td><strong>Age:</strong></td>
                         <td>{{student.age}}</td>
@@ -216,6 +251,13 @@
                     </tr>
                 </tbody>
             </table>
+			</div>
+			
+			<button style="margin:10px"><a href="/kumon/editstudent/{{student.id}}" style="margin:10px">Edit</a></button>
+			<form method = 'POST'> {% csrf_token %}
+			<button style="margin:10px" type="submit" name= "Delete" id="Delete" value="Delete"/>Delete</button>
+			</form>
+			
             </div>
         </div>
     </div>

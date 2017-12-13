@@ -13,138 +13,171 @@ class User(models.Model):
     username = models.CharField(max_length=25)
     password = models.CharField(max_length=50)
     level = models.CharField(max_length=20, choices=choices, default='Admin')
+    amount = models.DecimalField(blank=True,max_digits=7,decimal_places=2)
 
     def __str__(self):
         return self.username
 
+class Tuition(models.Model):  #connect to student
+    name = models.CharField(max_length=50)
+    choice = (
+        ('Fully Paid', 'Fully Paid'),
+        ('Partially Paid', 'Partially Paid'),
+        ('Not Yet Paid', 'Not Yet Paid'),
+    )
+    paid = models.CharField(
+        choices=choice,
+        max_length=15,
+        default='Not Yet Paid',
+    )
 
-class Teacher(models.Model):
-    gender_choices = (('Male', 'Male'), ('Female', 'Female'))
-    
-    #name = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-	firstname = models.CharField(max_length=50)
-	middlename = models.CharField(max_length=50)
-    birthdate = models.DateField(auto_now=False)
-    age = models.IntegerField()
-    gender = models.CharField(
-        max_length=10, choices=gender_choices, default='Male')
-    address = models.CharField(max_length=100)
-    phone_num = models.CharField(max_length=15)
-    tel_num = models.CharField(max_length=15)
-    email = models.EmailField(max_length=50)
-    t_picture = models.ImageField(
-        blank=True, default='profile_img/image.png', upload_to="profile_img")
-
-    subject_choice = (('Reading', 'Reading'), ('Math', 'Math'),
-                      ('Reading and Math', 'Reading and Math'))
-    subject = models.CharField(choices=subject_choice, max_length=20)
+    OR_number = models.CharField(max_length=100,blank=True,null=True)
+    date = models.DateField(auto_now=False,blank=True,null=True)
+    payment = models.DecimalField(decimal_places=2,max_digits=7,blank=True,null=True)
 
     def __str__(self):
         return self.name
+    
+class Teacher(models.Model):
+	
+	gender_choices = (
+		('Male','Male'),
+		('Female','Female')
+	)
+	
+	#name = models.CharField(max_length=50)
+	lastname = models.CharField(max_length=50)
+	firstname = models.CharField(max_length=50)
+	middlename = models.CharField(max_length=50)
+	birthdate = models.DateField(auto_now=False)
+	age = models.IntegerField()	
+	gender = models.CharField(
+		max_length=10,
+		choices = gender_choices,
+		default = 'Male'
+	)
+	address = models.CharField(max_length=100)
+	phone_num = models.CharField(max_length=15)
+	tel_num = models.CharField(max_length=15)
+	email = models.EmailField(max_length=50)
+	t_picture = models.ImageField(blank=True,default='profile_img/image.png',upload_to="profile_img")
+
+	
+	subject_choice = (
+		('Reading','Reading'),
+		('Math','Math'),
+		('Reading and Math','Reading and Math')
+		)
+	subject = models.CharField(choices=subject_choice, max_length=20)
+	
+	def __str__(self):
+		return self.firstname
 
 class Student(models.Model):
-    gender_choices = (('Male', 'Male'), ('Female', 'Female'))
-    #Basic Details
-    #name = models.CharField(max_length=59)
-    lastname = models.CharField(max_length=50)
+	gender_choices = (
+		('Male','Male'),
+		('Female','Female')
+	)
+	#Basic Details
+	#name = models.CharField(max_length=59)
+	lastname = models.CharField(max_length=50)
 	firstname = models.CharField(max_length=50)
 	middlename = models.CharField(max_length=50)
-    nickname = models.CharField(max_length=25)
-    birthdate = models.DateField(auto_now=False)
-    age = models.IntegerField()
-    gender = models.CharField(
-        max_length=10, choices=gender_choices, default='Male')
-    picture = models.ImageField(
-        blank=True, default='profile_img/image.png', upload_to="profile_img")
+	nickname = models.CharField(max_length=25)
+	birthdate = models.DateField(auto_now=False)
+	age = models.IntegerField()	
+	gender = models.CharField(
+		max_length=10,
+		choices = gender_choices,
+		default = 'Male'
+	)
+	picture = models.ImageField(blank=True, default='profile_img/image.png',upload_to="profile_img")
 
-    #Contact Info
-    phone_num = models.CharField(max_length=15)
-    tel_num = models.CharField(max_length=15)
-    address = models.CharField(max_length=100)
-    email = models.EmailField(max_length=50)
-    student_num = models.IntegerField()
+	#Contact Info
+	phone_num = models.IntegerField(max_length=11)
+	tel_num = models.IntegerField(max_length=7)
+	address = models.CharField(max_length=100)
+	email = models.EmailField(max_length=50)
+	student_num = models.IntegerField()
 
-    kumon_level_choices = (
-        ('PK3', 'PK3'),
-        ('PK2', 'PK2'),
-        ('PK1', 'PK1'),
-        ('K', 'K'),
-        ('Grade 1', ' Grade 1'),
-        ('Grade 2', ' Grade 2'),
-        ('Grade 3', ' Grade 3'),
-        ('Grade 4', ' Grade 4'),
-        ('Grade 5', ' Grade 5'),
-        ('Grade 6', ' Grade 6'),
-        ('Grade 7', ' Grade 7'),
-        ('Grade 8', ' Grade 8'),
-        ('Grade 8', ' Grade 8'),
-        ('Grade 9', ' Grade 9'),
-        ('Grade 10', ' Grade 10'),
-        ('Grade 11', ' Grade 11'),
-        ('Grade 12', ' Grade 12'),
-        ('Grade 13', ' Grade 13'),
-    )
+	kumon_level_choices = (
+		('PK3','PK3'),('PK2','PK2'),('PK1','PK1'),('K','K'),('Grade 1',' Grade 1'),
+		('Grade 2',' Grade 2'),('Grade 3',' Grade 3'),('Grade 4',' Grade 4'),('Grade 5',' Grade 5'),
+		('Grade 6',' Grade 6'),('Grade 7',' Grade 7'),('Grade 8',' Grade 8'),('Grade 8',' Grade 8'),
+		('Grade 9',' Grade 9'),('Grade 10',' Grade 10'),('Grade 11',' Grade 11'),('Grade 12',' Grade 12'),
+		('Grade 13',' Grade 13'),
+	)
 
-    kumon_levelM_choices = (
-        ('9A', '9A'),
-        ('8A', '8A'),
-        ('7A', '7A'),
-        ('6A', '6A'),
-        ('5A', '5A'),
-        ('4A', '4A'),
-        ('3A', '3A'),
-        ('2A', '2A'),
-        ('A', 'A'),
-        ('B', 'B'),
-        ('C', 'C'),
-        ('D', 'D'),
-        ('E', 'E'),
-        ('F', 'F'),
-        ('G', 'G'),
-        ('H', 'H'),
-        ('I', 'I'),
-        ('J', 'J'),
-        ('K', 'K'),
-        ('L', 'L'),
-        ('M', 'M'),
-        ('N', 'N'),
-        ('O', 'O'),
-        ('X', 'X'),
-    )
+	kumon_levelM_choices = (
+		('9A','9A'),('8A','8A'),('7A','7A'),('6A','6A'),('5A','5A'),
+		('4A','4A'),('3A','3A'),('2A','2A'),('A','A'),('B','B'),
+		('C','C'),('D','D'),('E','E'),('F','F'),('G','G'),
+		('H','H'),('I','I'),('J','J'),('K','K'),('L','L'),
+		('M','M'),('N','N'),('O','O'),('X','X'),
+	)
+	
+	kumon_levelR_choices = (
+		('7A','7A'),('6A','6A'),('5A','5A'),
+		('4A','4A'),('3A','3A'),('2A','2A'),
+		('AI','AI'),('AII','AII'),('BI','BI'),('BI','BII'),
+		('CI','CI'),('CII','CII'),('DI','DI'),('DI','DII'),
+		('EI','EI'),('EII','EII'),('FI','FI'),('FI','FII'),
+		('GI','GI'),('GII','GII'),('HI','HI'),('HI','HII'),
+		('II','II'),('III','III'),('J','J'),('K','K'),('L','L'),
+	)
 
-    #Other Info
-    school = models.CharField(max_length=50)
-    school_level = models.CharField(
-        max_length=50, choices=kumon_level_choices, default='PK3')
-    date_enrolled = models.DateField(auto_now=False)
-    kumon_levelM = models.CharField(
-        max_length=50, choices=kumon_levelM_choices, default='9A')
-    kumon_levelR = models.CharField(max_length=50, , choices=kumon_levelM_choices, default='9A')
+	#Other Info
+	school = models.CharField(max_length=50)
+	school_level = models.CharField(max_length=50, choices = kumon_level_choices,default = 'PK3')
+	date_enrolled = models.DateField(auto_now=False)
+	kumon_levelM = models.CharField(max_length=50, choices = kumon_levelM_choices, default = '9A')
+	kumon_levelR = models.CharField(max_length=50, choices = kumon_levelR_choices, default = '7A')
 
-    rank_choices = (('Bronze', 'Bronze'), ('Silver', 'Silver'),
-                    ('Gold', 'Gold'), ('None', 'None'))
+	rank_choices = (
+		('Bronze','Bronze'),
+		('Silver','Silver'),
+		('Gold','Gold'),
+		('None','None')
+		)
 
-    ashrR = models.CharField(
-        max_length=10, choices=rank_choices,
-        default='None')  #Gold, Silver, Bronze
+	ashrR = models.CharField(
+		max_length=10,
+		choices = rank_choices,
+		default = 'None'
+	) #Gold, Silver, Bronze 
 
-    ashrM = models.CharField(
-        max_length=10, choices=rank_choices,
-        default='None')  #Gold, Silver, Bronze
+	ashrM = models.CharField(
+		max_length=10,
+		choices = rank_choices,
+		default = 'None'
+	) #Gold, Silver, Bronze 
+		
+	
+	#Guardian Info 
+	guardian_name = models.CharField(max_length=50)
+	relation = models.CharField(max_length=50)
+	guardian_num = models.IntegerField(max_length=11) #Phone / Tel
+	guardian_email = models.EmailField(max_length=50,blank=True)
 
-    #Guardian Info
-    guardian_name = models.CharField(max_length=50)
-    relation = models.CharField(max_length=50)
-    guardian_num = models.CharField(max_length=30)  #Phone / Tel
-    guardian_email = models.EmailField(max_length=50, blank=True)
+        #teacher/s will be found in schedule
 
-    #teacher/s will be found in schedule
+	#sched = models.ForeignKey(Schedule, on_delete=models.CASCADE)
 
-    #sched = models.ForeignKey(Schedule, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.name
-
+	#Status
+	status_choices = (
+                ('Active','active'),
+                ('NonActive','nonactive'),
+				('Completed', 'completed')
+        )
+	
+	status = models.CharField(
+                max_length=10,
+                choices = status_choices,
+                default = 'Active'
+        )
+		         
+	def __str__(self):
+		return self.firstname
 
 class Schedule(models.Model):  #delete
 
@@ -178,24 +211,9 @@ class Schedule(models.Model):  #delete
         return self.timeslots
 
 
-class Grades(models.Model):
-
-    subject_choice = (('Science', 'Sci'), ('Math', 'Math'), ('English', 'Eng'))
-    subject = models.CharField(choices=subject_choice, max_length=10)
-
-    #grade for this term/sem/whatever they call it sa kumon
-    curr_grade = models.IntegerField(
-        default=0, validators=[MaxValueValidator(100),
-                               MinValueValidator(0)])
-
-    #average grade, cgpa for the subj kumaga
-    #ave_grade = 0
-    #ave_grade = models.IntegerField((curr_grade + ave_grade) / 2)
-
-
 class Expenses(models.Model):
     item = models.CharField(max_length=50, unique=True)
-    cost = models.FloatField(default=0.00, validators=[MinValueValidator(0)])
+    cost = models.DecimalField(decimal_places=2,max_digits=7)
     added = models.DateField()
 
     paid = models.BooleanField(blank=True)
@@ -218,7 +236,7 @@ class sTime(models.Model):  #connect to student
     sAbsent = models.BooleanField()
 
     def __str__(self):
-        return self.student.name
+        return self.student.firstname
 
 
 class tTime(models.Model):  #connect to teacher
@@ -233,30 +251,7 @@ class savedTuition(models.Model):
     above_g7 = models.FloatField()
     date = models.DateField()
 
-    def __str__(self):
-        return self.date
 
-class Tuition(models.Model):  #connect to student
-
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    choice = (
-        ('Fully Paid', 'Fully Paid'),
-        ('Partially Paid', 'Partially Paid'),
-        ('Not Yet Paid', 'Not Yet Paid'),
-    )
-
-    paid = models.CharField(
-        choices=choice,
-        max_length=15,
-        default='Not Yet Paid',
-    )
-
-    OR_number = models.CharField(max_length=100)
-    date = models.DateField(auto_now=False)
-    payment = models.FloatField()
-
-    def __str__(self):
-        return self.student.name
 
 class totalTuition(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
@@ -267,15 +262,89 @@ class totalTuition(models.Model):
     def __str__(self):
         return (self.student.name + ':' + self.date) 
 
+class Salary(models.Model):
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE)
+    salary = models.DecimalField(decimal_places=2,max_digits=7)
+    total = models.DecimalField(decimal_places=2,max_digits=7)
+
+    def __str__(self):
+        return(self.teacher.firstname)
+
 class addEntry(models.Model):
     name = models.CharField(max_length=50)
-    value = models.FloatField()
+    value = models.DecimalField(decimal_places=2,max_digits=7)
+
+    def __str__(self):
+        return (self.name)
 
 class delEntry(models.Model):
     name = models.CharField(max_length=50)
-    value = models.FloatField()
+    value = models.DecimalField(decimal_places=2,max_digits=7)
 
-class salary(models.Model):
-    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE)
-    salary = models.FloatField()
-    total = models.FloatField()
+    def __str__(self):
+        return (self.name)
+
+
+class Grades(models.Model):
+	#student = models.ForeignKey(Student, on_delete=models.CASCADE)
+	subject_choice = (
+		('Math', 'math'), ('Reading', 'reading')
+	)
+	subject = models.CharField(choices=subject_choice, max_length=10)
+	
+	test_choice = (
+		('Achievement', 'achievement'),
+		('Diagnostic', 'diagnostic')
+	)
+	test = models.CharField(max_length=15, choices = test_choice)
+	
+	level_choices = (
+		('PK3','PK3'),('PK2','PK2'),('PK1','PK1'),('K','K'),('Grade 1',' Grade 1'),
+		('Grade 2',' Grade 2'),('Grade 3',' Grade 3'),('Grade 4',' Grade 4'),('Grade 5',' Grade 5'),
+		('Grade 6',' Grade 6'),('Grade 7',' Grade 7'),('Grade 8',' Grade 8'),('Grade 8',' Grade 8'),
+		('Grade 9',' Grade 9'),('Grade 10',' Grade 10'),('Grade 11',' Grade 11'),('Grade 12',' Grade 12'),
+		('Grade 13',' Grade 13')
+	)
+	level = models.CharField(max_length=10, choices = level_choices)
+	
+	percentage = models.FloatField(validators = [MinValueValidator(0), MaxValueValidator(100)])
+	
+	group_choice = (
+		('A', 'a'),
+		('B', 'b'),
+		('C', 'c'),
+		('D', 'd')
+	)
+	group = models.CharField(max_length=3, choices=group_choice)
+	
+class Graph():
+	subject_choice = (
+		('Math', 'math'),
+		('Reading', 'reading')
+	)   
+	subject = models.CharField(choices=subject_choice, max_length=10)	
+	worksheets = models.IntegerField(validators = [MinValueValidator(0), MaxValueValidator(100)])
+	
+	student = models.ForeignKey(Student, on_delete=models.CASCADE)
+	
+	kumon_levelM_choices = (
+		('9A','9A'),('8A','8A'),('7A','7A'),('6A','6A'),('5A','5A'),
+		('4A','4A'),('3A','3A'),('2A','2A'),('A','A'),('B','B'),
+		('C','C'),('D','D'),('E','E'),('F','F'),('G','G'),
+		('H','H'),('I','I'),('J','J'),('K','K'),('L','L'),
+		('M','M'),('N','N'),('O','O'),('X','X'),
+	)
+	
+	kumon_levelR_choices = (
+		('7A','7A'),('6A','6A'),('5A','5A'),
+		('4A','4A'),('3A','3A'),('2A','2A'),
+		('AI','AI'),('AII','AII'),('BI','BI'),('BI','BII'),
+		('CI','CI'),('CII','CII'),('DI','DI'),('DI','DII'),
+		('EI','EI'),('EII','EII'),('FI','FI'),('FI','FII'),
+		('GI','GI'),('GII','GII'),('HI','HI'),('HI','HII'),
+		('II','II'),('III','III'),('J','J'),('K','K'),('L','L'),
+	)
+	
+	kumon_levelM = models.CharField(max_length=50, choices = kumon_levelM_choices, default = '9A')
+	kumon_levelR = models.CharField(max_length=50, choices = kumon_levelR_choices, default = '7A')
+	

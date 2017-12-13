@@ -153,6 +153,7 @@
                         <li>
                             <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
                         </li>
+                        {% if user.level == 'Admin' %}
                           <li>
                             <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
                         </li>
@@ -168,6 +169,7 @@
                         <li>
                             <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
                         </li>
+                        {%endif%}
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -196,7 +198,7 @@
 		<td>
         <Label style="padding-left: 0px;" name='sort_lbl' id='sort_lbl'>SORT BY:</Label>
 		<form method = 'POST'> {% csrf_token %}
-        <select onchange="this.form.submit()" name = "sortlist" id = "sortlist">
+        <select onchange="this.form.submit()" name = "sort" id = "sortlist">
             <option>Choose</option>
 			<option value = 'lastname'>Last Name</option>
             <option value = 'nickname'>Nickname</option>
@@ -223,7 +225,8 @@
             <tbody>
 		
             <tr>
-                <th id = "t1">Full Name (Last, First, Middle)</th>
+				<th></th>
+                <th id = "t1">Full Name (Last, First Middle)</th>
                 <th id = "t2">Nickname</th>
                 <th id = "t3">Birthdate</th>
                 <th id = "t4">Age</th>
@@ -238,7 +241,8 @@
             </tr>
             <tr>
                 {% for student in all_students %}
-                <td><a href="/kumon/studprofile/{{student.id}}">{{student.lastname}}, {{student.firstname}}, {{student.middlename}}</a></td>
+                <td><input type="checkbox" name="print"></td>
+				<td><a href="/kumon/studprofile/{{student.id}}">{{student.lastname}}, {{student.firstname}} {{student.middlename}}</a></td>
                 <td>{{student.nickname}}</td>
                 <td>{{student.birthdate}}</td>
                 <td>{{student.age}}</td>

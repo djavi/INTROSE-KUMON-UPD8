@@ -143,21 +143,23 @@
                         <li style = "background-color:lightgray;">
                             <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
                         </li>
-                          <li>
-                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
-                        </li>
-                         <li>
-                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
-                        </li>
-                          <li>
-                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
-                        </li>
+                        {% if user.level == 'Admin' %}
                         <li>
-                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
-                        </li>
+                          <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                      </li>
+                       <li>
+                          <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                      </li>
                         <li>
-                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
-                        </li>
+                          <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                      </li>
+                      {%endif%}
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -169,41 +171,24 @@
             {%csrf_token%}
         <div style="margin-left: 20% ; margin-top: 4% ; float:left ; width: 30%">
 			<table class="table table-bordered">
+
 			  <tr>
 				<th>Student Name</th>
-				<th>Absent </th> 
+				<th>Attendance </th> 
               </tr>
 
               {% for student in all_students %}
-              
-			  <tr>
-                {% for sTime in all_sTime %}
-                {%if sTime.student|stringformat:"s" == student.name and sTime.sAbsent == True and sTime.day|stringformat:"s" == a|stringformat:"s" %}
-                <td>{{student.name}}</td>
-                <td><input type="checkbox" name="attend" checked ></td>
-                <input type="hidden" name="student" value="{{student.name}}">
-                {% else%}
-                <td>{{student.name}}</td>
-                <td><input type="checkbox" name="attend"></td>
-                <input type="hidden" name="student" value="{{student.name}}">
-                {%endif%}
-                {%endfor%}                
-                </tr>
-              {%endfor%}
-
-              {% for student in all_students %}
               <tr>
-              {% if all_sTime%}
-              {% else %}
-              <td>{{student.name}}</td>
-              <td><input type="checkbox" name="attend"></td>
-              <input type="hidden" name="student" value="{{student.name}}">
-              {%endif%}
+                <td>Name</td>
+                <td>Present</td>
+                <td><input type="checkbox"></td>
             </tr>
-            {%endfor%}
+              {%endfor%}
             
 			</table>
+
         </div>
+        {% if user.level == 'Admin' %}
            <div style= " margin-left: 7px; margin-top: 4% ;float:left ; width: 40%">
 			<table table class="table table-bordered " >
 			  <tr>
@@ -211,32 +196,17 @@
 				<th>Time in </th>
                 <th>Time out</th>
 				<th>Absent</th>
-			  </tr>
+              </tr>
+              
+              {%for teacher in all_teachers %}
 			  <tr>
-				<td>teacher a</td>
-				<td><select>
-                    <option value="12:00pm">12:00pm</option>
-                    <option value="1:00pm">1:00pm</option>
-                    <option value="2:00pm">2:00pm</option>
-                    <option value="3:00pm">3:00pm</option>
-                    <option value="4:00pm">4:00pm</option>
-                    <option value="5:00pm">5:00pm</option>
-                    <option value="6:00pm">6:00pm</option>
-                    <option value="7:00pm">7:00pm</option>
-                    </select></td>
-                 <td><select>
-                    <option value="12:00pm">12:00pm</option>
-                    <option value="1:00pm">1:00pm</option>
-                    <option value="2:00pm">2:00pm</option>
-                    <option value="3:00pm">3:00pm</option>
-                    <option value="4:00pm">4:00pm</option>
-                    <option value="5:00pm">5:00pm</option>
-                    <option value="6:00pm">6:00pm</option>
-                    <option value="7:00pm">7:00pm</option>
-                    </select></td>
+				<td><a href="/kumon/studprofile/{{teacher.id}}">{{teacher.lastname}}, {{teacher.firstname}}</a></td>
+				<td><input type=time></td>
+                <td><input type=time></td>
 				<td><input type="checkbox" name="cb"></td>
 			  </tr>
-
+              {%endfor%}
+              {%endif%}
 			</table>
         </div>
         <input type="submit" id ="sbtn" value="submit">

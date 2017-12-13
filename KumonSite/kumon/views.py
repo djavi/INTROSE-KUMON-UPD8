@@ -11,15 +11,25 @@ import datetime
 
 # Create your views here.
 
-from kumon.forms import LoginForm, StudentForm, TeacherForm, ScheduleForm
+from kumon.forms import LoginForm, StudentForm, TeacherForm, ScheduleForm, EditTeacherForm, EditStudentForm
 
-from .models import User, Student, Teacher, Schedule, Expenses, Item, sTime, Tuition, savedTuition,totalTuition,salary,addEntry,delEntry
+from .models import User, Student, Teacher, Schedule, Expenses, Item, sTime, Tuition, savedTuition,totalTuition,Salary,addEntry,delEntry
+
+def create_user(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        kind = request.POST.get("kind")
+        user = User(username=username,password=password,level=kind,amount=0)
+        user.save()
+        return redirect('home')
+
+    return render(request,"kumon/index.html",{})
 
 def login(request):
     form = LoginForm(request.POST)
     all_users = User.objects.all()
     error = ''
-
     if form.is_valid():
         lUser = form.cleaned_data['username']
         lPass = form.cleaned_data['password']
@@ -27,6 +37,7 @@ def login(request):
         for i in all_users:
             if i.username == lUser:
                 if i.password == lPass: 
+                    request.session['user'] = i.id
                     return redirect('home')
         error = "Invalid username/password"
 
@@ -38,46 +49,96 @@ def login(request):
 
     return render(request, 'kumon/login.html', context)	
 
+def logout(request):
+    del request.session['user']
+    return redirect('login')
 
 def home(request):
-
+    user = User.objects.get(pk=request.session['user'])
     context = {
+        'user':user,
     }
     return render(request,'kumon/index3.html',context)
 
 def studentPage(request):
+    user = User.objects.get(pk=request.session['user'])
+    
     all_students = Student.objects.all()
+    
+    if request.method == "GET":
+        if "search" in request.GET:
+            searched = request.GET.get('search')
+            all_students = Student.objects.filter(nickname__contains=searched) | Student.objects.filter(firstname__contains=searched) | Student.objects.filter(lastname__contains=searched) | Student.objects.filter(middlename__contains=searched)
+	
+    filter = 'firstname'
+    if request.POST.get('sort'):
+        filter = request.POST.get('sort')
+	
+    all_students = all_students.order_by(filter)
+    
     context = {
         'all_students':all_students,
+        'user':user,
     }
     return render(request,'kumon/students.html',context)
 
 def studentProfile(request, student_id):
+    user = User.objects.get(pk=request.session['user'])
     all_students = Student.objects.all()
 
     try:
         student = Student.objects.get(pk=student_id)
     except (KeyError, Student.DoesNotExist):
         raise Http404("Student does not exist")
-
+	
+	
+    if request.POST.get('Delete'):
+        student.delete()
+        return redirect('students')
+		
     context = {
         'all_students':all_students,
         'student':student,
+        'user':user,
     }
     return render(request,'kumon/student-profile.html',context)
 
 
 def addStudent(request):
-    form = StudentForm(request.POST or None, request.FILES or None)
-    all_students = Student.objects.all()
+	form = StudentForm(request.POST or None, request.FILES or None)
+	all_students = Student.objects.all()
 
-    if form.is_valid():
-        student = form.save(commit=False)
-        student.save()
-        #return render(request, 'kumon/students.html', {'all_students':all_students})
-        return redirect('students')
+	if form.is_valid():
+		student = form.save(commit=False)
+		today = datetime.date.today()
+		student.age = today.year - student.birthdate.year - ((today.month, today.day) < (student.birthdate.month, student.birthdate.day))
+		student.save()
+		return redirect('students')
+        
+	return render(request, 'kumon/add-student.html', {'form':form})
+	
+def editStudent(request, student_id):
+	form = EditStudentForm(request.POST or None, request.FILES or None)
+	all_students = Student.objects.all()
+	student = Student.objects.get(pk=student_id)
+	
+	if form.is_valid():
+		student = form.save(commit=False)
+		student.save()
+		
+	return render(request, 'kumon/edit-student.html', {'form':form, 'student':student})	
+	
+def editTeacher(request, teacher_id):
+	form = EditTeacherForm(request.POST or None, request.FILES or None)
+	all_teachers = Teacher.objects.all()
+	teacher = Teacher.objects.get(pk=teacher_id)
+	
+	if form.is_valid():
+		teacher = form.save(commit=False)
+		teacher.save()
+		
+	return render(request, 'kumon/edit-teacher.html', {'form':form, 'teacher':teacher})	
 
-    return render(request, 'kumon/add-student.html', {'form':form})
 
 def addTeacher(request):
     form = TeacherForm(request.POST or None, request.FILES or None)
@@ -86,39 +147,52 @@ def addTeacher(request):
     if form.is_valid():
         teacher = form.save(commit=False)
         teacher.save()
+        salary = Salary(teacher=teacher,salary=0,total=0)
+        salary.save()
         #return render(request, 'kumon/teachers.html', {'all_teachers':all_teachers})
         return redirect('teacher')
 
     return render(request, 'kumon/add-teacher.html', {'form':form})
 
 def teacherPage(request):
+    user = User.objects.get(pk=request.session['user'])
     all_teachers = Teacher.objects.all()
     context = {
         'all_teachers':all_teachers,
+        'user':user
     }
     
     return render(request,'kumon/teachers.html',context)
 
 def teacherProfile(request, teacher_id):
     #all_teachers = Teachers.objects.all()
-
+    user = User.objects.get(pk=request.session['user'])
     try:
         teacher = Teacher.objects.get(pk=teacher_id)
+        all_schedules = Schedule.objects.filter(teacher=teacher)
     except (KeyError, Teacher.DoesNotExist):
         raise Http404("Teacher does not exist")
+
+    if request.POST.get('Delete'):
+        teacher.delete()
+        return redirect('teachers')
 
     context = {
         #'all_teachers':all_teachers,
         'teacher':teacher,
+        'all_schedules':all_schedules,
+        'user':user,
     }
     return render(request,'kumon/profile.html',context)
     
 
 def attendancePage(request):
     all_students = Student.objects.all()
+    user = User.objects.get(pk=request.session['user'])
     all_sTime = sTime.objects.all()
     a = datetime.datetime.now().date()
     a = a.strftime('%Y-%m-%d')
+    studentList = []
     if request.method == "GET":
         if "date" in request.GET:
             a = request.GET.get("date")
@@ -126,7 +200,13 @@ def attendancePage(request):
     month = a[5:-3]
     year = a[:-6]
     day = a[8:]
- 
+
+    ids = sTime.objects.all().values_list('student',flat=True)
+
+    for student in ids:
+        studentList.append([Student.objects.get(pk=student)])
+        
+    print(studentList)
     if request.method == "POST":
         if request.POST.get("attend") and request.POST.get("student"):
             print(request.POST.get("attend"))
@@ -140,6 +220,7 @@ def attendancePage(request):
         'all_sTime':all_sTime,
         'a':a,
         'now':now,
+        'user':user
     }
     return render(request,'kumon/Attendance.html',context)
 
@@ -148,22 +229,70 @@ def paymentPage(request):
     all_students = Student.objects.all()
     all_tuition = Tuition.objects.all()
     all_saved = savedTuition.objects.all()
-    all_total = totalTuition.objects.all()
-    now = datetime.datetime.now().date()
-    now = str(now)
-    month = now[5:-3]
-    year = now[:-6]
-    day = now[8:]
+    all_total = totalTuition.objects.all()            
+    now = str(datetime.datetime.now().date())
+    a = datetime.datetime.now().date()
+    a = a.strftime('%Y-%m-%d')
+    error = None
+    to_update =[]
+
+    nMonth = now[5:-3]
+    nYear = now[:-6]
+    nDay = now[8:]
+    n0w = (nYear + '-' + nMonth)
+
+    month = a[5:-3]
+    year = a[:-6]
+    a = (year + '-' + month)
+    choice = None
+
+    if request.method == "GET":
+        if "date" in request.GET:
+            a = request.GET.get("date")
+            year = a[:4]
+            month = a[5:]
+            print(a)
+            print(n0w)
+
+    if request.method == "GET":
+        if "list" in request.GET:
+            choice = request.GET.get("list")
+            all_students = all_students.filter(tuition__paid=choice)
+
     if request.method == "POST":
         if "add" in request.POST:
             print("ADD")
-            print('student ' + request.POST.get("studList"))
-            print('or-number ' + request.POST.get("or-number"))
-            print('date ' + request.POST.get("date"))
-            print('payment ' + request.POST.get("payment"))
-            sample = totalTuition.objects.filter(date__year = year,date__month=month)
+            for a in request.POST:
+                print(a)
+            #studentId = int(request.POST.get("studentId"))
+            #print(request.POST.get("studentId"))
+            student = request.POST.get("studList")
+            ornum = request.POST.get("or-number")
+            date = request.POST.get("date")
+            payment = request.POST.get("payment")
+            
+            for a in all_tuition:
+                if(ornum == a.OR_number):
+                    error = "Same OR number"
+                    context = {
+                    'all_students':all_students,
+                    'all_tuition':all_tuition,
+                    'a':a,
+                    'n0w':n0w,
+                    'error':error
+                    }
+                    return render(request,'kumon/payment.html',context)
+
+            tuition = Tuition.objects.get(name__exact=student)
+            tuition.OR_number = ornum
+            tuition.date = date
+            tuition.payment = payment
+            tuition.paid = 'Fully Paid'
+            tuition.save()
+            
+            return redirect('payments')
             if(month == date[5:-3] and year == date[:-6]):
-                total = totalTuition(student=all_students.get(name__exact=student1),totalPaid='0',needPay='5000',)
+                total = totalTuition(student=all_students.get(name__exact=student),totalPaid='0',needPay='5000',)
 
             
     if request.method == "POST":
@@ -171,14 +300,54 @@ def paymentPage(request):
             print("Update")
             print("level " + request.POST.get("level"))
             print("paid " + request.POST.get("pay"))
-            
+            level = request.POST.get("level")
+            pay = request.POST.get("pay")
+
+            if level == 'Grade 6 and below':
+                a = savedTuition.objects.get(pk=1)
+                a.date = datetime.datetime.now().date()
+                a.below_g6 = pay
+                a.above_g7 = a.above_g7
+                a.save()
+            elif level == 'Grade 7 and above':
+                a = savedTuition.objects.get(pk=1)
+                a.date = datetime.datetime.now().date()
+                a.below_g6 = a.below_g6
+                a.above_g7 = pay
+                a.save()
+
     if request.method == "GET":
         if "q" in request.GET:
-            all_students = all_students.filter(name__contains=request.GET.get("q"))
+            all_students = all_students.filter(firstname__contains=request.GET.get("q")) | all_students.filter(lastname__contains=request.GET.get("q"))
+    
+    if request.method == "POST":
+        if "remove" in request.POST:
+            for old_items in request.POST:
+                print(old_items)
+                print(old_items[:4])
+                if old_items[:4] == "del-":
+                    to_update.append([old_items[4:],request.POST.get(old_items)])
+        print(to_update)
+        for expense in to_update:
+            if expense[1] == 'on':
+                b = Tuition.objects.get(pk=expense[0])
+                print(b.date)
+                b.date = None
+                b.OR_number = None
+                b.payment = None
+                b.paid = "Not Yet Paid"
+                b.save()
 
+        return redirect('payments')
+
+    bbb = savedTuition.objects.get(pk=1)
     context = {
         'all_students':all_students,
         'all_tuition':all_tuition,
+        'a':a,
+        'n0w':n0w,
+        'error':error,
+        'bbb':bbb,
     }
 
     return render(request,'kumon/payment.html',context)
@@ -317,6 +486,7 @@ def inventoryUpdate (request):
                 item_obj.stock = 0
 
             item_obj.save()
+
     elif "remove" in request.POST:
         for old_items in request.POST:
             if old_items[:11] == "item_check-":
@@ -442,7 +612,46 @@ def exspensesAdd(request):
 def schedulePage(request):
     all_students = Student.objects.all()
     all_schedules = Schedule.objects.all()
-    form = ScheduleForm(request.GET)
+    form = ScheduleForm(request.POST)
+    to_update = []
+
+    if request.method == "POST":
+        if "update" in request.POST:
+            form = ScheduleForm(request.POST)
+            print(form['teacher'].value())
+            print(form.data['teacher'])
+            for items in request.POST:
+                print(items)
+                print(items[:4])
+                if items[:4] == "add-":
+                    to_update.append([items[4:],request.POST.get(items)])
+            
+            print(to_update)
+
+            for sched in to_update:
+                if sched[1] == 'on':
+                    stud = Student.objects.get(pk=sched[0])
+                    teacher = form['teacher'].value()
+                    day = form['day'].value()
+                    timeslots = form['timeslots'].value()
+                    final = Schedule(teacher=Teacher.objects.get(pk=teacher),student=stud,day=day,timeslots=timeslots)
+                    final.save()
+        
+        elif "remove" in request.POST:
+            form = ScheduleForm(request.POST)
+            for items in request.POST:
+                if items[:4] == "add-":
+                    to_update.append([items[4:],request.POST.get(items)])
+                
+            for sched in to_update:
+                if sched[1] == 'on':
+                    stud = Student.objects.get(pk=sched[0])
+                    teacher = form['teacher'].value()
+                    day = form['day'].value()
+                    timeslots = form['timeslots'].value()
+
+                    final = Schedule.objects.filter(student=stud).filter(teacher__id=teacher).filter(day=day).filter(timeslots=timeslots)
+                    final.delete()
 
     context = {
         'all_students':all_students,
@@ -454,11 +663,15 @@ def schedulePage(request):
 
 def salaryFormatPage(request):
     all_teachers = Teacher.objects.all()
-    all_salary = salary.objects.all()
     all_add = addEntry.objects.all()
     all_del = delEntry.objects.all()
     length = len(all_add) + 1
     length2 = len(all_del) + 1
+    to_update = []
+    to_update2 = []
+    all_salary = Salary.objects.all()
+    all_users = User.objects.all()
+    user = User.objects.get(pk=1)
 
     if request.method == "POST":
         if "add" in request.POST:
@@ -477,24 +690,73 @@ def salaryFormatPage(request):
 
     if request.method == "POST":
         if "submit" in request.POST:
-            allowance = request.POST.get("allowance_update")
-            total = request.POST.get("total")
-            '''
+            allowance = request.POST.get("allowance_amount")
+            print(allowance)
+            user.amount = float(allowance)
+            user.save()
+            print(user.amount)
+            for old_items in request.POST:
+                print(old_items)
+                print(old_items[:4])
+                if old_items[:4] == "add-":
+                    to_update.append([old_items[4:], float(request.POST.get(old_items))])
+
+            print(to_update)
+
+            for item in to_update:
+                item_obj = addEntry.objects.get(pk=item[0])
+                item_obj.value = item[1]
+                item_obj.save()
+
+
+            for old_items in request.POST:
+                print(old_items[:4])
+                if old_items[:4] == "del-":
+                    to_update2.append([old_items[4:], float(request.POST.get(old_items))])
+
+            print(to_update2)
+
+            for item in to_update2:
+                item_obj = delEntry.objects.get(pk=item[0])
+                item_obj.value = item[1]
+                item_obj.save()
+            
             for teacher in all_teachers:
-                if(salary.object.get(=teacher.id)):
-                    teach = salary.object.get(pk=teacher.id)
-                    teach.salary = allowance
-                    teach.total = total
-                    teach.save()
-                else:
-                    teach = salary(teacher=teacher,salary=allowance,total=total)
-                    teach.save()
-            '''
+                for salary in all_salary:
+                    if salary.teacher == teacher:
+                        salary.teacher = teacher
+                        salary.salary = allowance
+                        
+                        salary.save()
+            
+            return redirect('salary')
+
+    if request.method == "POST":
+        if "remove" in request.POST:
+            for old_items in request.POST:
+                print(old_items)
+                print(old_items[:15])
+                if old_items[:15] == "item_check_del-":
+                    to_update2.append([old_items[15:], request.POST.get(old_items)])
+                elif old_items[:15] == "item_check_add-":
+                    to_update.append([old_items[15:],request.POST.get(old_items)])
+
+        for expense in to_update2:
+            if expense[1] == 'on':
+                delEntry.objects.get(pk=expense[0]).delete()
+        
+        for expense in to_update:
+            if expense[1] == 'on':
+                addEntry.objects.get(pk=expense[0]).delete()
+        
+        return redirect('salary_format')
+
     context = {
         'all_add':all_add,
         'length':length,
         'length2':length2,
         'all_del':all_del,
+        'user': user,
     }
 
     return render(request, 'kumon/salaries_format.html',context)
@@ -507,13 +769,38 @@ def teacherSalaryPage(request,id):
     teacher = Teacher.objects.get(pk=id)
     all_add = addEntry.objects.all()
     all_del = delEntry.objects.all()
+    salary = Salary.objects.get(teacher=teacher)
+    length = len(all_add) + 1
+    length2 = len(all_del) + 1
+
     context = {
-        'teacher':teacher,
+        'salary':salary,
         'all_add':all_add,
         'all_del':all_del,
+        'length':length,
+        'length2':length2,
     }
 
     return render(request,'kumon/teacher_salary.html',context)
+
+def get(request,id):
+    teacher = Teacher.objects.get(pk=id)
+    all_add = addEntry.objects.all()
+    all_del = delEntry.objects.all()
+    salary = Salary.objects.get(teacher=teacher)
+    length = len(all_add) + 1
+    length2 = len(all_del) + 1
+
+    data = {
+        'salary':salary,
+        'all_add':all_add,
+        'all_del':all_del,
+        'length':length,
+        'length2':length2,
+    }
+    
+    #pdf = render_to_pdf('kumon/teacher_salary.html', data)
+    #return HttpResponse(pdf, content_type='application/pdf')
 
 def salaryPage(request):
     all_teachers = Teacher.objects.all()

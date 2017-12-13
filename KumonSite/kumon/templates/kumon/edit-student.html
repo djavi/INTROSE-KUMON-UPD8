@@ -138,21 +138,26 @@
 			<div class="student-table">
             <table class="table table-bordered">
 			<tbody>
-            <form method='POST' class="post-form" enctype='multipart/form-data'>
+            <form method='post' class="post-form" enctype='multipart/form-data'>
             {% csrf_token %}
             {% for field in form %}
-            <tr>
-			<td><label>{{field.label_tag}}</label></td>
+			<tr>
+            <td>{% if field.birthdate == '' %}
+            <input type="date" id="date" name="q" class="form-control"></td>
+            {% else %}
+            <td><label>{{field.label_tag}}</label></td>
             <td>{{field}}<br></td>
+            {%endif %}
             {% endfor %}
+			</tr>
                 <br>
-			</tr>	
-			</tbody>
-            </table>
-            </div>
-            <button type='submit'>Save</button>
-            <button type='button'><a href="/kumon/teachers">Go Back</a></button>
-            </form>
+				
+        </tr>	
+		</tbody>
+        </table>
+		<button type='submit'>Save</button>
+		</form>
+        <button type = "button"><a href="/kumon/studprofile/{{student.id}}">Go Back</a></button>
         </div>
     </body>
 </html>

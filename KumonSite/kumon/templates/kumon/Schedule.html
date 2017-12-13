@@ -18,7 +18,7 @@
             position:relative;
             right:0px;
 			top:0;
-            left: 880px;
+            left: 700px;
             background-color:#008CBA;
             border:none;
             color:white;
@@ -222,7 +222,7 @@
                     <p> 
                       {% for schedule in all_schedules %}
                       {%if schedule.day == 'Monday' and schedule.timeslots == '10to11'%}
-                      {{schedule.student.name }} <br>
+                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                       {%endif %}
                       {%endfor%}
                       <p>  
@@ -232,7 +232,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Tuesday' and schedule.timeslots == '10to11'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -242,7 +242,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '10to11'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -252,7 +252,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Thursday' and schedule.timeslots == '10to11'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -262,7 +262,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Friday' and schedule.timeslots == '10to11'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -272,7 +272,7 @@
                             <p> 
                                   {% for schedule in all_schedules %}
                                   {%if schedule.day == 'Saturday' and schedule.timeslots == '10to11'%}
-                                          {{schedule.student.name }} <br>
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                               {%endif %}
                                               {%endfor%}
                             <p>  
@@ -290,7 +290,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '11to12'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -299,7 +299,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '11to12'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -309,7 +309,7 @@
                                 <p> 
                                   {% for schedule in all_schedules %}
                                   {%if schedule.day == 'Wednesday' and schedule.timeslots == '11to12'%}
-                                  {{schedule.student.name }} <br>
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                   {%endif %}
                                   {%endfor%}
                                   <p>  
@@ -318,7 +318,7 @@
                                         <p> 
                                           {% for schedule in all_schedules %}
                                           {%if schedule.day == 'Thursday' and schedule.timeslots == '11to12'%}
-                                          {{schedule.student.name }} <br>
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                           {%endif %}
                                           {%endfor%}
                                           <p>  
@@ -327,7 +327,7 @@
                                                 <p> 
                                                   {% for schedule in all_schedules %}
                                                   {%if schedule.day == 'Friday' and schedule.timeslots == '11to12'%}
-                                                  {{schedule.student.name }} <br>
+                                                 {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                   {%endif %}
                                                   {%endfor%}
                                                   <p>  
@@ -337,7 +337,7 @@
                                                         <p> 
                                                           {% for schedule in all_schedules %}
                                                           {%if schedule.day == 'Saturday' and schedule.timeslots == '11to12'%}
-                                                          {{schedule.student.name }} <br>
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                           {%endif %}
                                                           {%endfor%}
                                                           <p>  
@@ -355,7 +355,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '12to1'%}
-                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -364,7 +364,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '12to1'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -373,7 +373,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '12to1'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -382,7 +382,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '12to1'%}
-                                                      {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -391,7 +391,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '12to1'%}
-                                                              {{schedule.student.name }} <br>
+                                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -400,7 +400,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '12to1'%}
-                                                                      {{schedule.student.name }} <br>
+                                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -419,7 +419,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '1to2'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -428,7 +428,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '1to2'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -437,7 +437,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '1to2'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -446,7 +446,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '1to2'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -455,7 +455,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '1to2'%}
-                                                              {{schedule.student.name }} <br>
+                                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -464,7 +464,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '1to2'%}
-                                                                      {{schedule.student.name }} <br>
+                                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -483,7 +483,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '2to3'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -492,7 +492,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '2to3'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -501,7 +501,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '2to3'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -510,7 +510,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '2to3'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -519,7 +519,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '2to3'%}
-                                                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -528,7 +528,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '2to3'%}
-                                                                      {{schedule.student.name }} <br>
+                                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -548,7 +548,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '3to4'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -557,7 +557,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '3to4'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -566,7 +566,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '3to4'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -575,7 +575,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '3to4'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -584,7 +584,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '3to4'%}
-                                                              {{schedule.student.name }} <br>
+                                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -593,7 +593,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '3to4'%}
-                                                                      {{schedule.student.name }} <br>
+                                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -612,7 +612,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '4to5'%}
-                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -621,7 +621,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '4to5'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -630,7 +630,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '4to5'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -639,7 +639,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '4to5'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -648,7 +648,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '4to5'%}
-                                                              {{schedule.student.name }} <br>
+                                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -657,7 +657,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '4to5'%}
-                                                                      {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -676,7 +676,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '5to6'%}
-                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -685,7 +685,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '5to6'%}
-                                      {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -694,7 +694,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '5to6'%}
-                                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -703,7 +703,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '5to6'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -712,7 +712,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '5to6'%}
-                                                              {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -721,7 +721,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '5to6'%}
-                                                                      {{schedule.student.name }} <br>
+{{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -740,7 +740,7 @@
                             <p> 
                               {% for schedule in all_schedules %}
                               {%if schedule.day == 'Monday' and schedule.timeslots == '6to7'%}
-                              {{schedule.student.name }} <br>
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                               {%endif %}
                               {%endfor%}
                               <p>  
@@ -749,7 +749,7 @@
                                     <p> 
                                       {% for schedule in all_schedules %}
                                       {%if schedule.day == 'Tuesday' and schedule.timeslots == '6to7'%}
-                                      {{schedule.student.name }} <br>
+                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                       {%endif %}
                                       {%endfor%}
                                       <p>  
@@ -758,7 +758,7 @@
                                             <p> 
                                               {% for schedule in all_schedules %}
                                               {%if schedule.day == 'Wednesday' and schedule.timeslots == '6to7'%}
-                                              {{schedule.student.name }} <br>
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
                                               {%endif %}
                                               {%endfor%}
                                               <p>  
@@ -767,7 +767,7 @@
                                                     <p> 
                                                       {% for schedule in all_schedules %}
                                                       {%if schedule.day == 'Thursday' and schedule.timeslots == '6to7'%}
-                                                      {{schedule.student.name }} <br>
+                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                       {%endif %}
                                                       {%endfor%}
                                                       <p>  
@@ -776,7 +776,7 @@
                                                             <p> 
                                                               {% for schedule in all_schedules %}
                                                               {%if schedule.day == 'Friday' and schedule.timeslots == '6to7'%}
-                                                              {{schedule.student.name }} <br>
+                                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                               {%endif %}
                                                               {%endfor%}
                                                               <p>  
@@ -785,7 +785,7 @@
                                                                     <p> 
                                                                       {% for schedule in all_schedules %}
                                                                       {%if schedule.day == 'Saturday' and schedule.timeslots == '6to7'%}
-                                                                      {{schedule.student.name }} <br>
+                                                                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
                                                                       {%endif %}
                                                                       {%endfor%}
                                                                       <p>  
@@ -821,11 +821,11 @@
             </select>
             <br><br>	
 			
-            <form method="post">
+            <form method="POST">
             {%csrf_token%}
 		    <div>
 				{% for field in form %}
-				{{ field }}
+				{{ field}}
                 {% endfor %}
             </div>
 			
@@ -843,18 +843,20 @@
                 </tr>
                 {% for student in all_students %}
                 <tr>
-                    <td>{{student.name}}</td>
+                  <td><a name = "student-{{student.id}}" href = "/kumon/studprofile/{{student.id}}"> {{student.lastname}}, {{student.firstname}}</a></td>
                     <td>{{student.nickname}}</td>
                     <td>{{student.kumon_levelM}}</td>
                     <td>{{student.kumon_levelR}}</td>
                     <td>{{student.ashrR}}</td>
                     <td>{{student.ashrM}}</td>
-                    <td> <input type = "checkbox"></td>    
+                    <td> <input type = "checkbox" name="add-{{student.id}}"></td>    
                 </tr>
                 {%endfor%}
                 </tbody>
             </table>
-            <button class = "update-btn" type="submit"> Update </button>
+            <button class = "update-btn" name ="update" type="submit"> Update </button>
+            <button class = "update-btn" name ="remove" type="submit"> Remove </button>
+
         </form>
             </div>
         </div>

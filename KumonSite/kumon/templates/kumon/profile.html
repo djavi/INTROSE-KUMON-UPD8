@@ -29,8 +29,7 @@
         <!-- Custom Fonts -->
         <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
         
-        <script src="{% static 'kumon/jquery.min.js' %}"></script>
-        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+
 </head>
 
 <body>
@@ -83,7 +82,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -119,21 +118,23 @@
                         <li>
                             <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
                         </li>
-                          <li>
-                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
-                        </li>
-                         <li>
-                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
-                        </li>
-                          <li>
-                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
-                        </li>
+                        {% if user.level == 'Admin' %}
                         <li>
-                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
-                        </li>
+                          <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                      </li>
+                       <li>
+                          <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                      </li>
                         <li>
-                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
-                        </li>
+                          <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                      </li>
+                      {%endif%}
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -144,7 +145,7 @@
          <div id="page-wrapper">
              <div class="row">
                 <div class="col-lg-1.2" style="margin: 2%">
-             <img src={{ teacher.t_picture.url }} class="img-thumbnail">
+             <img src={{ teacher.t_picture.url }} class="img-thumbnail" style="width: 200px; height: 200px; overflow: hidden">
                  </div>
              </div>
              <!--
@@ -181,7 +182,7 @@
                        <tbody>
                <tr>
                    <td><strong>Name:</strong></td>
-                   <td>{{teacher.name}}</td>
+                   <td>{{teacher.lastname}}, {{teacher.firstname}}</td>
                </tr>
                <tr>
                    <td><strong>Gender</strong></td>
@@ -223,57 +224,609 @@
          <th style="text-align: center">Thursday</th>
          <th style="text-align: center">Friday</th>
          <th style="text-align: center">Saturday</th>
-         <th style="text-align: center">Sunday</th>
        </tr>
      </thead>
      <tbody>
-       <tr >
-         <th scope="column" rowspan="3" style="text-align: center">4:00pm-5:00pm</th>
-         <td>student name</td>
-         <th rowspan="3" style="text-align:center">no shift</th>
-         <th rowspan="6" style="text-align:center">Day off</th>
-         <td>student name</td>
-         <td>student name</td>
-         <td>student name </td>
-         <th rowspan="6" style="text-align:center">Day off</th>
-       </tr>
-       <tr>
-         <td >student name</td>
-         <td>student name </td>
-         <td>student name</td>
-         <td>student name</td>
-       </tr>
+        <form method="get">
+            
         <tr>
-         <td >student name</td>
-         <td>student name </td>
-         <td>student name</td>
-         <td>student name</td>
-       </tr>
+        
+          <th scope="column" rowspan="3" style="text-align: center">10:00AM - 11:00 AM </th>
+
+          <td>
+        <p> 
+          {% for schedule in all_schedules %}
+          {%if schedule.day == 'Monday' and schedule.timeslots == '10to11'%}
+          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+          {%endif %}
+          {%endfor%}
+          <p>  
+        </td>
+
+        <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Tuesday' and schedule.timeslots == '10to11'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+        </td>
+
+        <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '10to11'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+        </td>
+          
+        <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Thursday' and schedule.timeslots == '10to11'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Friday' and schedule.timeslots == '10to11'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+        
+            <td>
+                <p> 
+                      {% for schedule in all_schedules %}
+                      {%if schedule.day == 'Saturday' and schedule.timeslots == '10to11'%}
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                  {%endif %}
+                                  {%endfor%}
+                <p>  
+        </td>
+        </tr>
         <tr>
-         <th scope="column" rowspan="3" style="text-align: center">5:00pm-6:00pm</th>
-        <th rowspan="3" style="text-align:center">no shift</th>
-         <td>student name</td>
-         <td>student name</td>
-      <th rowspan="3" style="text-align:center">no shift</th>
-         <td>student name</td>  
-       </tr>
-       <tr>
-         <td>student name</td>
-         <td>student name</td>
-         <td>student name</td>
-       </tr>
+        </tr>
+         <tr>
+        </tr>
+        
+
         <tr>
-         <td>student name</td>
-         <td>student name </td>
-         <td>student name</td>
-       </tr>
-       
-     </tbody>
+          <th scope="column" rowspan="3" style="text-align: center">11:00 - 12:00 AM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '11to12'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+            <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '11to12'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+            </td>
+
+            <td>
+                    <p> 
+                      {% for schedule in all_schedules %}
+                      {%if schedule.day == 'Wednesday' and schedule.timeslots == '11to12'%}
+                      {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                      {%endif %}
+                      {%endfor%}
+                      <p>  
+                    </td>
+                    <td>
+                            <p> 
+                              {% for schedule in all_schedules %}
+                              {%if schedule.day == 'Thursday' and schedule.timeslots == '11to12'%}
+                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                              {%endif %}
+                              {%endfor%}
+                              <p>  
+                            </td>
+                            <td>
+                                    <p> 
+                                      {% for schedule in all_schedules %}
+                                      {%if schedule.day == 'Friday' and schedule.timeslots == '11to12'%}
+                                     {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                      {%endif %}
+                                      {%endfor%}
+                                      <p>  
+                                    </td>
+
+                                    <td>
+                                            <p> 
+                                              {% for schedule in all_schedules %}
+                                              {%if schedule.day == 'Saturday' and schedule.timeslots == '11to12'%}
+                                              {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                              {%endif %}
+                                              {%endfor%}
+                                              <p>  
+                                            </td>
+        </tr>
+        <tr>
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">12:00 - 1:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '12to1'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '12to1'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '12to1'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '12to1'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '12to1'%}
+                                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '12to1'%}
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">1:00 - 2:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '1to2'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '1to2'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '1to2'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '1to2'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '1to2'%}
+                                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '1to2'%}
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">2:00 - 3:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '2to3'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '2to3'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '2to3'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '2to3'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '2to3'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '2to3'%}
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">3:00PM - 4:00PM </th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '3to4'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '3to4'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '3to4'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '3to4'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '3to4'%}
+                                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '3to4'%}
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">4:00 - 5:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '4to5'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '4to5'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '4to5'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '4to5'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '4to5'%}
+                                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '4to5'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">5:00 - 6:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '5to6'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '5to6'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '5to6'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '5to6'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '5to6'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '5to6'%}
+{{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+        </tr>
+         <tr>
+
+        </tr>
+        
+        <tr>
+          <th scope="column" rowspan="3" style="text-align: center">6:00 - 7:00PM</th>
+          <td>
+                <p> 
+                  {% for schedule in all_schedules %}
+                  {%if schedule.day == 'Monday' and schedule.timeslots == '6to7'%}
+                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                  {%endif %}
+                  {%endfor%}
+                  <p>  
+                </td>
+                <td>
+                        <p> 
+                          {% for schedule in all_schedules %}
+                          {%if schedule.day == 'Tuesday' and schedule.timeslots == '6to7'%}
+                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                          {%endif %}
+                          {%endfor%}
+                          <p>  
+                        </td>
+                        <td>
+                                <p> 
+                                  {% for schedule in all_schedules %}
+                                  {%if schedule.day == 'Wednesday' and schedule.timeslots == '6to7'%}
+                                  {{schedule.student.lastname}}, {{schedule.student.firstname }}<br>
+                                  {%endif %}
+                                  {%endfor%}
+                                  <p>  
+                                </td>
+                                <td>
+                                        <p> 
+                                          {% for schedule in all_schedules %}
+                                          {%if schedule.day == 'Thursday' and schedule.timeslots == '6to7'%}
+                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                          {%endif %}
+                                          {%endfor%}
+                                          <p>  
+                                        </td>
+                                        <td>
+                                                <p> 
+                                                  {% for schedule in all_schedules %}
+                                                  {%if schedule.day == 'Friday' and schedule.timeslots == '6to7'%}
+                                                  {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                  {%endif %}
+                                                  {%endfor%}
+                                                  <p>  
+                                                </td>
+                                                <td>
+                                                        <p> 
+                                                          {% for schedule in all_schedules %}
+                                                          {%if schedule.day == 'Saturday' and schedule.timeslots == '6to7'%}
+                                                          {{schedule.student.lastname}}, {{schedule.student.firstname }} <br>
+                                                          {%endif %}
+                                                          {%endfor%}
+                                                          <p>  
+                                                        </td>
+        </tr>
+        <tr>
+
+
+        </tr>
+         <tr>
+
+
+        </tr>
+        
+
+    </tbody>
    </table> </td>
                </tr>
            </tbody>
        </table>
    </div>
+   
+   <button style="margin:10px"><a href="/kumon/editteacher/{{teacher.id}}" style="margin:10px">Edit</a></button>
+	<form method = 'POST'> {% csrf_token %}
+	<button style="margin:10px" type="submit" name= "Delete" id="Delete" value="Delete"/>Delete</button>
+	</form>
                 
    </div>
    </body>

@@ -154,47 +154,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-        
-        <div class= "date">
-            <Label> SELECT DATE: </Label>
-            <select style = "padding: 5px 15px;"> 
-                <option> Middle of Jan</option>
-                <option> End of Jan   </option>
-                <option> Middle of Feb</option>
-                <option> End of Feb   </option>
-                <option> Middle of Mar</option>
-                <option> End of Mar  </option>
-                <option> Middle of Apr</option>
-                <option> End of Apr   </option>
-                <option> Middle of May</option>
-                <option> End of May   </option>
-                <option> Middle of Jun</option>
-                <option> End of Jun   </option>
-                <option> Middle of Jul</option>
-                <option> End of Jul   </option>
-                <option> Middle of Aug</option>
-                <option> End of Aug   </option>
-                <option> Middle of Sep</option>
-                <option> End of Sep   </option>
-                <option> Middle of Oct</option>
-                <option> End of Oct   </option>
-                <option> Middle of Nov</option>
-                <option> End of Nov   </option>
-                <option> Middle of Dec</option>
-                <option> End of Dec   </option>
-            </select>
-            
-            <select style = "padding: 5px 15px;"> 
-                <option> 2017 </option>
-                <option> 2016 </option>
-                <option> 2015 </option>
-                <option> 2014 </option>
-                <option> 2013 </option>
-                <option> 2012 </option>
-                <option> 2011 </option>
-                <option> 2010 </option>
-            </select>
-        </div>
+    
 
         <div class = "salaries-table">
                 <table class = "table table-bordered">
@@ -202,7 +162,7 @@
                     <tbody>
                         {% for teacher in all_teachers %}
                         <tr>
-                            <td><a href = "/kumon/teacher_salary/{{teacher.id}}"> {{teacher.name}}</a></td>
+                            <td><a href = "/kumon/teacher_salary/{{teacher.id}}"> {{teacher.lastname}}, {{teacher.firstname}}</a></td>
                         </tr>
 
                     </tbody>

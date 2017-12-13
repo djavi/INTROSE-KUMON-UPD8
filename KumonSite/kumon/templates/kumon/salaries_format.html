@@ -293,7 +293,37 @@
     });
 
     });
+    function setTwoNumberDecimal(event) {
+    this.value = parseFloat(this.value).toFixed(2);
+}
 
+function validateFloatKeyPress(el, evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    var number = el.value.split('.');
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+
+    if(number.length>1 && charCode == 46){
+         return false;
+    }
+
+    var caratPos = getSelectionStart(el);
+    var dotPos = el.value.indexOf(".");
+    if( caratPos > dotPos && dotPos>-1 && (number[1].length > 1)){
+        return false;
+    }
+    return true;
+}
+
+function getSelectionStart(o) {
+    if (o.createTextRange) {
+        var r = document.selection.createRange().duplicate()
+        r.moveEnd('character', o.value.length)
+        if (r.text == '') return o.value.length
+        return o.value.lastIndexOf(r.text)
+    } else return o.selectionStart
+}
     </script>
     <div id="wrapper">
 
@@ -425,45 +455,50 @@
             </form>
 
             </div>
-        <form method="POST">
+        <form method="POST" action="{%url 'salary_format' %}">
             {%csrf_token%}
             <div class="salaries-table">
                 <table class="table table-bordered">
                     <tr>
                         <th class="info"><strong>Salary:</strong> </th>
-                        <td>Allowance: <input type = "number" name = "allowance_amount" id="allowance" value = "0" /> </td>
+                        <td>Allowance: <input onkeypress="return validateFloatKeyPress(this,event);" type = "number" name = "allowance_amount" id="allowance" step ="0.01"value = "{{user.amount}}" /> </td>
                         <td></td>
                     </tr>
                     
-                    
+                    {%if all_add%}
                     <tr>
                         <th class="success" rowspan="{{length}}">Additional: </th>
                     </tr>
 
                     {% for i in all_add %}
                     <tr>
-                        <td>{{i.name}}:<input type = "number" id = "add-{{forloop.counter}}" step=".01" value = "{{i.value}}"/></td>
-                        <td> <input type="submit" value="Remove" name="remove" class="btn btn-primary"></td>
+                        <td>{{i.name}}:<input type = "number" name = "add-{{i.id}}"id = "add-{{forloop.counter}}" step=".01" value = "{{i.value}}"/></td>
+                        <td class="chck"><input type="checkbox" name="item_check_add-{{i.id}}"></td>
                     </tr>
                     {%endfor%}
+                    {%endif%}
                     
-                    
+                    {%if all_del%}
                     <tr>
                         <th class="danger" rowspan="{{length2}}">Deductions: </th>
                     </tr>
+                    
                     {% for d in all_del %}
                     <tr>
-                        <td>{{d.name}}:<input type = "number"  step="0.01" id = "del-{{forloop.counter}}" value = "{{d.value}}" /></td>
-                        <td> <input type="submit" value="Remove" name="remove" class="btn btn-primary"></td>
+                        <td>{{d.name}}:<input type = "number"  step="0.01"  name = "del-{{d.id}}"id = "del-{{forloop.counter}}" value = "{{d.value}}" /></td>
+                        <td class="chck"><input type="checkbox" name="item_check_del-{{d.id}}"></td>
                     </tr>
                     {%endfor%}
-
+                    {%endif%}
+                    
                     <tr>
                         <td class = "warning"> </td>
-                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input type = "number" name="total" id = "output" value = "" disabled /></th>
+                        <th class = "warning" style = "text-align: right"> TOTAL SALARY: <input name="output" type = "number" id = "output" value = "" disabled step="0.01" /></th>
                     </tr>
                 </table>
+                <input type="submit" value="Remove Entry" name="remove" class="btn btn-danger">
                 <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                
             </div>
             
             </form>

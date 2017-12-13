@@ -20,8 +20,7 @@
     
         <!-- Custom Fonts -->
         <link rel="stylesheet" href="{% static 'kumon/font-awesome.min.css' %}" type="text/css">
-        <script src="{% static 'kumon/jquery.min.js' %}"></script>
-        <script src="{% static 'kumon/bootstrap.min.js' %}"></script>
+        
 
 </head>
 
@@ -76,7 +75,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/kumon/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -112,21 +111,23 @@
                         <li>
                             <a href="/kumon/attendance"><i class="fa fa-check-square fa-fw"></i> Attendance</a>
                         </li>
-                          <li>
-                            <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
-                        </li>
-                         <li>
-                            <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
-                        </li>
-                          <li>
-                            <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
-                        </li>
+                        {% if user.level == 'Admin' %}
                         <li>
-                            <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
-                        </li>
+                          <a href="/kumon/schedule"><i class="fa fa-calendar fa-fw"></i> Schedule</a>
+                      </li>
+                       <li>
+                          <a href="/kumon/salaries"><i class="fa fa-database fa-fw"></i> Salary</a>
+                      </li>
                         <li>
-                            <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
-                        </li>
+                          <a href="/kumon/payments"><i class="fa fa-money fa-fw"></i> Payments</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/expenses"><i class="fa fa-envelope-o fa-fw"></i> Expenses</a>
+                      </li>
+                      <li>
+                          <a href="/kumon/inventory"><i class="fa fa-cube fa-fw"></i> Inventory</a>
+                      </li>
+                      {%endif%}
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -136,29 +137,35 @@
 
     </div>
       <div id="page-wrapper">
-    <button><a href="/kumon/addteacher">Add</a></button>
+    <button style="margin:10px"><a href="/kumon/addteacher" style="margin:10px">Add</a></button>
 
     {% for  teacher in all_teachers %}
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card"   style="width:400px">
-  <img class="card-img-top" src="{{teacher.t_picture.url}}" alt="Card image">
-  <div class="card-body">
-      <h3 class="card-title text-left">Name: {{teacher.name}}</h3>
-      <dl class="card-text text-left">
-          <dt>Schedule/s: 
-              <!-- {% for schedule in teacher.schedule %}
-                        
-              {% endfor %} -->
-          </dt>
-      </dl>
-    
-    <a href="/kumon/teacherprofile/{{teacher.id}}" class="btn btn-primary">See Profile</a>
-  </div>     
-        </div>
-        </div>
-        </div>
-        {%endfor%}
-          </div>
+	<div class="row">
+		<div class="student-table" style="width: 100%">
+			<table class="table table-bordered" style="table-layout: fixed;">
+				<tbody>
+					<div class="col-sm-6">
+						<div class="card"   style="width:400px">
+							<tr>
+								<td><img class="card-img-top" src={{ teacher.t_picture.url }} alt="Card image" style='max-height: 260px; max-width: 260px; width: 200px; height: 200px; overflow: hidden'></td>
+								<div class="card-body">
+									<td> <a href="/kumon/teacherprofile/{{teacher.id}}"><h3 class="card-title text-left">{{teacher.lastname}}, {{teacher.firstname}} {{teacher.middlename}}</h3></a></td>
+									<td>
+									<h5>Phone Number: {{ teacher.phone_num }}</h5>
+									<br>
+									<h5>Email Address: {{ teacher.email }}</h5>
+									<br>
+									<h5>Subjects: {{ teacher.subject }}</h5>
+									</td>
+								</div>     
+							</tr>
+						</div>
+					</div>
+				</tbody>
+			</table>
+		</div>
+	</div>
+		{%endfor%}
+	</div>
 </body>
 </html>
